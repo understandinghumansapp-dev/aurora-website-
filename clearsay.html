@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClearSay — Aurora's AAC & Accessibility Specialist</title>
+<meta name="description" content="ClearSay is Aurora's communication advocate for non-verbal, autistic, and disabled users. AAC board interpretation, advocate mode, picture boards, simplified responses.">
+<meta property="og:title" content="ClearSay — Your Communication Advocate">
+<meta property="og:description" content="ClearSay interprets AAC boards, simplifies responses, and acts as a communication advocate for non-verbal users — making all of Aurora accessible.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aurora-system.ca/clearsay">
+<link rel="canonical" href="https://aurora-system.ca/clearsay">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #03030a;
+    --bg2:       #060614;
+    --bg3:       #0a0a1a;
+    --green:     #00ff88;
+    --green2:    #00e676;
+    --cyan:      #00e5ff;
+    --cyan2:     #18ffff;
+    --purple:    #aa00ff;
+    --purple2:   #7c4dff;
+    --magenta:   #ff00e5;
+    --blue:      #2979ff;
+    --teal:      #22d3ee;
+    --text:      #f0f0ff;
+    --dim:       #6070a0;
+    --radius:    16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  /* === AURORA BOREALIS BACKGROUND === */
+  .aurora-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .aurora-band {
+    position: absolute;
+    width: 160%;
+    height: 55%;
+    left: -30%;
+    top: -10%;
+    border-radius: 50%;
+    filter: blur(60px);
+    mix-blend-mode: screen;
+    opacity: 0.45;
+  }
+
+  .aurora-band:nth-child(2) {
+    background: linear-gradient(105deg,
+      transparent 0%,
+      rgba(34,211,238,0.5) 25%,
+      rgba(124,77,255,0.5) 55%,
+      rgba(0,229,255,0.4) 80%,
+      transparent 100%);
+    animation: aurora1 12s ease-in-out infinite alternate;
+  }
+  .aurora-band:nth-child(3) {
+    background: linear-gradient(95deg,
+      transparent 0%,
+      rgba(170,0,255,0.4) 15%,
+      rgba(34,211,238,0.45) 45%,
+      rgba(0,255,136,0.3) 70%,
+      transparent 100%);
+    top: 5%;
+    animation: aurora2 16s ease-in-out infinite alternate;
+    opacity: 0.35;
+  }
+  .aurora-band:nth-child(4) {
+    background: linear-gradient(115deg,
+      transparent 0%,
+      rgba(34,211,238,0.35) 30%,
+      rgba(167,139,250,0.4) 60%,
+      transparent 100%);
+    top: -5%;
+    animation: aurora3 20s ease-in-out infinite alternate;
+    opacity: 0.3;
+  }
+
+  .aurora-streaks {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px, transparent 80px,
+      rgba(34,211,238,0.015) 81px, transparent 82px,
+      transparent 160px, rgba(124,77,255,0.012) 161px, transparent 162px
+    );
+    animation: streakShift 8s linear infinite;
+  }
+
+  .aurora-horizon {
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 35%;
+    background: linear-gradient(to top,
+      rgba(34,211,238,0.05) 0%, rgba(124,77,255,0.03) 40%, transparent 100%);
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 72% 5%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 22%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 8% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 92% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 55%, rgba(255,255,255,0.4) 0%, transparent 100%);
+    opacity: 0.8;
+  }
+
+  @keyframes aurora1 {
+    0%   { transform: translateX(-5%) scaleY(0.9) rotate(-1deg); }
+    50%  { transform: translateX(3%) scaleY(1.1) rotate(0.5deg); }
+    100% { transform: translateX(6%) scaleY(1.05) rotate(1deg); }
+  }
+  @keyframes aurora2 {
+    0%   { transform: translateX(4%) scaleY(1.05); }
+    50%  { transform: translateX(-6%) scaleY(0.9); }
+    100% { transform: translateX(2%) scaleY(1.1); }
+  }
+  @keyframes aurora3 {
+    0%   { transform: translateX(-8%) scaleY(0.85); }
+    50%  { transform: translateX(5%) scaleY(1.2); }
+    100% { transform: translateX(-3%) scaleY(1.0); }
+  }
+  @keyframes streakShift {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(162px); }
+  }
+
+  /* === NAV === */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    width: 100%;
+    background: rgba(3,3,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(34,211,238,0.12);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 5px;
+    color: var(--teal); text-shadow: 0 0 16px rgba(34,211,238,0.5);
+    text-transform: uppercase; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(180,200,240,0.6); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-home {
+    background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.25);
+    border-radius: 8px; padding: 7px 16px; color: var(--teal) !important;
+    font-weight: 600; font-size: 0.78rem !important; letter-spacing: 1px;
+  }
+  @media (max-width: 700px) { nav { padding: 0 20px; } .nav-links { gap: 14px; } }
+
+  /* === PAGE CONTENT === */
+  .page { position: relative; z-index: 1; width: 100%; max-width: 1000px; padding: 0 40px; }
+
+  /* === HERO === */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.3);
+    border-radius: 999px; padding: 6px 20px; font-size: 0.72rem;
+    color: var(--teal); letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .hero-badge-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--teal); box-shadow: 0 0 10px var(--teal), 0 0 20px rgba(34,211,238,0.4);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero h1 {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 900; letter-spacing: -2px; line-height: 1.05; margin-bottom: 24px;
+    background: linear-gradient(120deg, var(--teal) 0%, #a78bfa 60%, var(--teal) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(34,211,238,0.3));
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    color: rgba(180,200,240,0.7); max-width: 580px; line-height: 1.8; margin-bottom: 40px;
+  }
+  .hero-quote {
+    background: rgba(34,211,238,0.06); border: 1px solid rgba(34,211,238,0.18);
+    border-left: 4px solid var(--teal); border-radius: 12px;
+    padding: 18px 24px; font-size: 1.05rem; font-style: italic;
+    color: rgba(200,220,255,0.8); max-width: 560px; line-height: 1.7;
+  }
+
+  /* === SECTION === */
+  .section { padding: 60px 0; }
+  .section-label {
+    font-size: 0.68rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--teal); font-family: 'Courier New', monospace; margin-bottom: 10px; opacity: 0.8;
+  }
+  .section h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 900; letter-spacing: -1px; margin-bottom: 14px;
+  }
+  .section-sub {
+    color: rgba(160,180,230,0.65); font-size: 0.95rem; max-width: 620px; line-height: 1.8;
+    margin-bottom: 36px;
+  }
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(34,211,238,0.12), transparent);
+    margin: 0;
+  }
+
+  /* === HOW IT WORKS === */
+  .steps { display: flex; flex-direction: column; gap: 20px; }
+  .step {
+    display: flex; gap: 20px; align-items: flex-start;
+    background: rgba(6,6,20,0.7); border: 1px solid rgba(34,211,238,0.1);
+    border-radius: 14px; padding: 20px 22px;
+  }
+  .step-num {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9rem; color: var(--teal);
+  }
+  .step-title { font-weight: 700; color: var(--teal); margin-bottom: 4px; font-size: 0.95rem; }
+  .step-desc { color: rgba(170,185,225,0.7); font-size: 0.85rem; line-height: 1.6; }
+
+  /* === CONDITIONS === */
+  .conditions-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
+  }
+  .cond-card {
+    background: rgba(6,6,20,0.75); border: 1px solid rgba(34,211,238,0.1);
+    border-left: 3px solid var(--teal); border-radius: 12px; padding: 18px 18px;
+  }
+  .cond-title { font-weight: 800; color: var(--teal); margin-bottom: 6px; font-size: 0.92rem; }
+  .cond-desc { font-size: 0.82rem; color: rgba(165,185,225,0.7); line-height: 1.6; }
+  .cond-source { font-size: 0.72rem; color: rgba(100,130,170,0.5); margin-top: 6px; font-style: italic; }
+
+  /* === SOURCES === */
+  .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .source-card {
+    background: rgba(6,6,20,0.7); border: 1px solid rgba(124,77,255,0.15);
+    border-radius: 12px; padding: 18px;
+  }
+  .source-name { font-weight: 700; color: #a78bfa; margin-bottom: 4px; font-size: 0.9rem; }
+  .source-url { font-size: 0.72rem; color: var(--teal); margin-bottom: 6px; font-family: monospace; }
+  .source-desc { font-size: 0.8rem; color: rgba(160,175,215,0.65); line-height: 1.5; }
+
+  /* === PROFILE === */
+  .profile-block {
+    background: rgba(6,6,20,0.8);
+    border: 1px solid rgba(34,211,238,0.15);
+    border-radius: 18px; padding: 32px 36px;
+  }
+  .profile-title { font-size: 1.1rem; font-weight: 800; color: var(--teal); margin-bottom: 12px; }
+  .profile-desc { color: rgba(160,180,225,0.7); font-size: 0.88rem; line-height: 1.7; margin-bottom: 20px; }
+  .profile-fields {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;
+  }
+  .profile-field {
+    background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.12);
+    border-radius: 8px; padding: 10px 14px; font-size: 0.8rem;
+    color: rgba(170,190,230,0.75);
+  }
+  .profile-field strong { color: var(--teal); display: block; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+
+  /* === SIGNUP === */
+  .signup-card {
+    background: rgba(6,6,20,0.85); border: 1px solid rgba(34,211,238,0.2);
+    border-top: 1px solid rgba(34,211,238,0.4); border-radius: 22px;
+    padding: 48px 44px; width: 100%; max-width: 580px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 60px rgba(34,211,238,0.05), inset 0 1px 0 rgba(34,211,238,0.1);
+    position: relative; overflow: hidden;
+  }
+  .signup-card::before {
+    content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent); opacity: 0.5;
+  }
+  .signup-card h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
+  .signup-card p { color: rgba(160,180,220,0.65); font-size: 0.88rem; line-height: 1.75; margin-bottom: 28px; }
+  .signup-form { display: flex; flex-direction: column; gap: 12px; }
+  .signup-form input { background: rgba(34,211,238,0.04); border: 1px solid rgba(34,211,238,0.15);
+    border-radius: 10px; padding: 14px 18px; font-size: 0.92rem; color: var(--text);
+    outline: none; transition: border-color 0.2s; width: 100%; }
+  .signup-form input:focus { border-color: rgba(34,211,238,0.5); }
+  .signup-form input::placeholder { color: rgba(100,130,180,0.45); }
+  .signup-form button {
+    background: linear-gradient(135deg, rgba(34,211,238,0.15), rgba(124,77,255,0.15));
+    border: 1px solid rgba(34,211,238,0.45); border-radius: 10px; padding: 15px;
+    font-size: 0.95rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; color: var(--teal); transition: all 0.25s; margin-top: 4px;
+  }
+  .signup-form button:hover { box-shadow: 0 0 40px rgba(34,211,238,0.25); color: #fff; transform: translateY(-1px); }
+  .signup-note { margin-top: 14px; color: rgba(100,120,160,0.45); font-size: 0.74rem; }
+  .success-msg {
+    display: none; color: var(--teal); font-size: 0.95rem; font-weight: 600;
+    padding: 18px; background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.2);
+    border-radius: 10px; margin-top: 8px;
+  }
+
+  footer {
+    position: relative; z-index: 1; width: 100%; padding: 36px 40px;
+    color: rgba(100,120,160,0.35); font-size: 0.75rem; text-align: center;
+    letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.04);
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+  .footer-links a { color: rgba(100,130,180,0.5); text-decoration: none; font-size: 0.72rem; }
+  .footer-links a:hover { color: var(--teal); }
+
+  @media (max-width: 600px) {
+    .page { padding: 0 20px; }
+    .hero { padding: 60px 0 40px; }
+    .signup-card { padding: 32px 22px; }
+    .section { padding: 44px 0; }
+    .profile-block { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Aurora borealis background (teal-shifted for ClearSay) -->
+<div class="aurora-canvas">
+  <div class="stars"></div>
+  <div class="aurora-band"></div>
+  <div class="aurora-band"></div>
+  <div class="aurora-band"></div>
+  <div class="aurora-streaks"></div>
+  <div class="aurora-horizon"></div>
+</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">◈ Aurora OS</a>
+  <ul class="nav-links">
+    <li><a href="#what">What ClearSay Does</a></li>
+    <li><a href="#who">Who She Helps</a></li>
+    <li><a href="#sources">Sources</a></li>
+    <li><a href="#access" class="nav-home">Get Access</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      AAC · Accessibility · Communication Advocate
+    </div>
+
+    <h1>🌈 ClearSay</h1>
+
+    <p class="hero-sub">
+      Aurora's dedicated accessibility specialist. ClearSay interprets AAC boards,
+      simplifies complex responses, and acts as a full communication advocate —
+      interacting with Aurora's tools <em>on behalf of</em> non-verbal users.
+    </p>
+
+    <div class="hero-quote">
+      "Every person has a voice. My job is to make sure it reaches everywhere Aurora can go."
+      <br><span style="font-size:.8rem;color:rgba(120,150,200,.6);font-style:normal;margin-top:8px;display:block">— ClearSay 🌈</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- What ClearSay does -->
+  <section class="section" id="what">
+    <div class="section-label">Capabilities</div>
+    <h2>What ClearSay Does</h2>
+    <p class="section-sub">
+      ClearSay is activated when AAC mode or non-verbal mode is turned on.
+      She becomes the communication bridge between the user and every Aurora agent.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Interpret AAC Board Input</div>
+          <div class="step-desc">ClearSay reads emoji symbol sequences, PECS-style selections, and simple word inputs. She decodes what the user selected — "🎮 ✅ ❓" becomes "the user wants help with gaming." She understands 50+ core symbols out of the box and can be trained on custom vocabulary.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Confirm with the User</div>
+          <div class="step-desc">Before acting, ClearSay confirms what she understood in one simple sentence: "You want: gaming help. Is that right? [✅ Yes] [❌ No] [❓ More info]" — giving the user full control at every step.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Route to the Right Agent</div>
+          <div class="step-desc">ClearSay routes the request to whichever Aurora specialist is needed — GameGirl Grace for gaming, WebDev for websites, DataSci for data. She coordinates the whole agent team on behalf of the non-verbal user.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Simplify the Response</div>
+          <div class="step-desc">Agent replies are simplified to short, accessible language: max 10-12 words per sentence, no jargon, active voice, numbered steps. Emoji support is added to key words. Complex outputs become clear, visual responses anyone can follow.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">Advocate Mode — She Acts For You</div>
+          <div class="step-desc">In Advocate Mode, ClearSay doesn't just translate — she acts. She navigates Aurora's apps, triggers commands, and completes tasks on behalf of the non-verbal user. The way a human communication advocate would — speaking for you, not instead of you.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div>
+          <div class="step-title">Source Citations On Request</div>
+          <div class="step-desc">Ask ClearSay about autism, AAC devices, communication disorders, or disability research — she provides sourced, accurate information from ASHA, ISAAC, the DSM-5, and peer-reviewed researchers. Never guesses. Always cites.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Profile -->
+  <section class="section" id="profile">
+    <div class="section-label">Shareable Profile</div>
+    <h2>Your ClearSay Profile</h2>
+    <p class="section-sub">
+      ClearSay comes with a shareable, customizable user profile. Save it as a file
+      and bring it to any app that uses ClearSay Portable — your preferences travel with you.
+    </p>
+
+    <div class="profile-block">
+      <div class="profile-title">What the Profile Stores</div>
+      <div class="profile-desc">
+        Your ClearSay profile remembers how you communicate best. Share it with caregivers,
+        SLPs, or new devices so ClearSay can serve you immediately — no setup required.
+      </div>
+      <div class="profile-fields">
+        <div class="profile-field"><strong>Name</strong>Your name or the AAC user's name</div>
+        <div class="profile-field"><strong>Communication Level</strong>Symbol / Phrase / Sentence</div>
+        <div class="profile-field"><strong>Symbol System</strong>Emoji, PCS, Widgit, ARASAAC, SymbolStix</div>
+        <div class="profile-field"><strong>AAC Device</strong>Proloquo2Go, Grid 3, Tobii, custom</div>
+        <div class="profile-field"><strong>Custom Phrases</strong>Your own symbol → meaning mappings</div>
+        <div class="profile-field"><strong>Interests</strong>Topics to surface in responses</div>
+        <div class="profile-field"><strong>Caregiver / SLP</strong>Contact info for shared access</div>
+        <div class="profile-field"><strong>Emergency Contacts</strong>Stored securely on-device</div>
+        <div class="profile-field"><strong>Favorite Symbols</strong>Pinned to top of picture board</div>
+        <div class="profile-field"><strong>Notes</strong>Anything ClearSay should know about you</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Who she helps -->
+  <section class="section" id="who">
+    <div class="section-label">Who ClearSay Helps</div>
+    <h2>Built for Every Communication Need</h2>
+    <p class="section-sub">
+      ClearSay has deep, source-cited knowledge of conditions that affect communication.
+      She presumes competence always — non-verbal does not mean non-thinking.
+    </p>
+
+    <div class="conditions-grid">
+      <div class="cond-card">
+        <div class="cond-title">Autism Spectrum Disorder (ASD)</div>
+        <div class="cond-desc">~1 in 36 children in the US are autistic (CDC, 2023). 25–30% are non-speaking or minimally verbal. ClearSay supports gestalt language processing, echolalia, and sensory needs. Deep familiarity with AAC research for autism.</div>
+        <div class="cond-source">Source: CDC (2023), Anderson et al. (2007), Prizant (1983), DSM-5 (APA, 2013)</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">Cerebral Palsy (CP)</div>
+        <div class="cond-desc">50–80% of people with CP have speech or communication difficulties (Parkes et al., 2010). ClearSay supports switch access, eye gaze input, and works with GMFCS and MACS assessments when recommending AAC approaches.</div>
+        <div class="cond-source">Source: Parkes et al. (2010), ASHA AAC Practice Portal</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">ALS / MND</div>
+        <div class="cond-desc">Progressive motor neuron disease. ClearSay understands AAC introduction timelines and supports users navigating Aurora entirely via eye gaze or minimal motor input as the condition progresses.</div>
+        <div class="cond-source">Source: Beukelman et al. (2011), ASHA ALS Practice Portal</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">Aphasia</div>
+        <div class="cond-desc">Language loss — not intellectual disability. ClearSay uses Supported Conversation for Aphasia (SCA) principles: key words, pictures alongside text, and patience. She never talks down to the user.</div>
+        <div class="cond-source">Source: Kagan (1998), Communication Matters, ASHA Aphasia Portal</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">Rett Syndrome</div>
+        <div class="cond-desc">Primarily affects females. Loss of purposeful hand use makes eye gaze the primary communication mode. ClearSay optimizes for low-motor-demand input and eye gaze SGD support.</div>
+        <div class="cond-source">Source: Sigafoos et al. (2009), ISAAC</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">Down Syndrome</div>
+        <div class="cond-desc">Receptive language typically exceeds expressive language. Early AAC introduction supports and enhances speech development — it does not delay it. ClearSay knows the evidence on this thoroughly.</div>
+        <div class="cond-source">Source: Romski &amp; Sevcik (1996), Beukelman &amp; Mirenda (2013)</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">Angelman Syndrome</div>
+        <div class="cond-desc">UBE3A mutation. Minimal or no spoken language. ClearSay works with symbol-based communication, SGDs, gestures, and eye gaze for more complex communication needs.</div>
+        <div class="cond-source">Source: ASHA, Angelman Syndrome Foundation</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">Selective Mutism</div>
+        <div class="cond-desc">Anxiety disorder where speech is possible in some contexts but not others. Not a choice. Not always autism-related (though they can co-occur). ClearSay provides a no-pressure AAC alternative.</div>
+        <div class="cond-source">Source: DSM-5, Selective Mutism Alliance</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">Locked-in Syndrome</div>
+        <div class="cond-desc">Complete paralysis except eye movement. Communication via eye gaze or minimal coding. ClearSay is built to work with whatever motor capability the user has — however minimal.</div>
+        <div class="cond-source">Source: ISAAC, BCI research literature</div>
+      </div>
+      <div class="cond-card">
+        <div class="cond-title">Traumatic Brain Injury (TBI)</div>
+        <div class="cond-desc">Cognitive-communication disorders affecting attention, word-finding, and memory. ClearSay adapts to temporary or long-term AAC needs and adjusts to the user's current capacity.</div>
+        <div class="cond-source">Source: ASHA Cognitive-Communication Portal, Beukelman et al.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Sources -->
+  <section class="section" id="sources">
+    <div class="section-label">Research Grounding</div>
+    <h2>Sources ClearSay Cites</h2>
+    <p class="section-sub">
+      When you ask ClearSay about autism, AAC, or communication disabilities, she answers
+      with sourced information from the world's leading organisations and researchers.
+    </p>
+
+    <div class="sources-grid">
+      <div class="source-card">
+        <div class="source-name">ASHA</div>
+        <div class="source-url">asha.org</div>
+        <div class="source-desc">American Speech-Language-Hearing Association. AAC practice portals, autism resources, SLP standards, and evidence-based practice guidelines.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">ISAAC</div>
+        <div class="source-url">isaac-online.org</div>
+        <div class="source-desc">International Society for AAC. Global standards, research, and advocacy for augmentative and alternative communication.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">ASAN</div>
+        <div class="source-url">autisticadvocacy.org</div>
+        <div class="source-desc">Autistic Self Advocacy Network. "Nothing about us without us." Autistic-led policy and disability rights perspective.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">Communication Matters</div>
+        <div class="source-url">communicationmatters.org.uk</div>
+        <div class="source-desc">UK AAC charity. Resources for AAC users, families, and professionals. Annual conference and research network.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">Beukelman &amp; Mirenda</div>
+        <div class="source-url">Augmentative and Alternative Communication (5th ed.)</div>
+        <div class="source-desc">The definitive AAC textbook. Participation Model, vocabulary approaches, device selection frameworks — ClearSay's core reference.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">Barry Prizant</div>
+        <div class="source-url">Uniquely Human (2015)</div>
+        <div class="source-desc">Gestalt language processing, echolalia as functional communication. Neurodiversity-affirming autism framework widely used by SLPs.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">Ann Kagan</div>
+        <div class="source-url">Supported Conversation for Aphasia (1998)</div>
+        <div class="source-desc">SCA framework — acknowledging competence, revealing competence. ClearSay uses these principles with all users with aphasia or expressive language difficulties.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">Janice Light &amp; David McNaughton</div>
+        <div class="source-url">AAC Competence Model (2014)</div>
+        <div class="source-desc">Operational, linguistic, social, and strategic competence in AAC. ClearSay references this model when advising on AAC skill development.</div>
+      </div>
+      <div class="source-card">
+        <div class="source-name">CDC / DSM-5</div>
+        <div class="source-url">cdc.gov · APA (2013)</div>
+        <div class="source-desc">Prevalence data (1 in 36, 2023) and diagnostic criteria for ASD. ClearSay uses current figures and distinguishes them from outdated statistics.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Access -->
+  <section class="section" id="access" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+    <div class="section-label">Get ClearSay</div>
+    <h2>ClearSay is Part of Aurora OS</h2>
+    <p class="section-sub" style="text-align:center">
+      ClearSay comes built-in to Aurora OS — and as a standalone portable Python module
+      you can drop into any app. Request access to the Aurora beta and get ClearSay included.
+    </p>
+
+    <div class="signup-card">
+      <h2>Request ClearSay Access</h2>
+      <p>ClearSay is available to all Aurora testers, caregivers, AAC professionals, and accessibility advocates. Drop your email to be first in line.</p>
+      <form class="signup-form" id="cs-form">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Get ClearSay Access</button>
+      </form>
+      <div class="success-msg" id="cs-success">
+        You are on the list. We will reach out personally.
+      </div>
+      <p class="signup-note">No spam. We will only contact you when ClearSay is ready for your use case.</p>
+    </div>
+  </section>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Aurora OS Home</a>
+    <a href="index.html#team">AI Team</a>
+    <a href="#what">What ClearSay Does</a>
+    <a href="#who">Who She Helps</a>
+    <a href="#sources">Sources</a>
+    <a href="#access">Get Access</a>
+  </div>
+  <div>© 2026 Aurora OS · ClearSay · Built by Kristina Green · aurora-system.ca</div>
+</footer>
+
+<script>
+document.getElementById('cs-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name  = this.querySelector('input[name="name"]').value.trim();
+  const email = this.querySelector('input[name="email"]').value.trim();
+
+  const mailto = 'mailto:understandinghumansapp@gmail.com'
+    + '?subject=' + encodeURIComponent('ClearSay Access Request — ' + name)
+    + '&body='    + encodeURIComponent(
+        'Name: ' + name + '\nEmail: ' + email +
+        '\n\nI would like access to ClearSay / Aurora OS.\n' +
+        'My use case: [please describe your situation or how you plan to use ClearSay]'
+      );
+
+  window.location.href = mailto;
+  this.style.display = 'none';
+  document.getElementById('cs-success').style.display = 'block';
+});
+</script>
+
+</body>
+</html>

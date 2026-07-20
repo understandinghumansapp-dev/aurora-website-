@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aurora OS — The Self-Building AI Operating System · Coming Soon</title>
-<meta name="description" content="Aurora is the world's first ND-friendly, self-building AI operating system. 100% local, no cloud, no subscription. Coming soon — join the waitlist.">
-<meta property="og:title" content="Aurora OS — Coming Soon">
-<meta property="og:description" content="The AI that builds itself. 100% local. No cloud. No subscription. Coming soon.">
+<title>Aurora OS — The AI That Builds Itself</title>
+<meta name="description" content="Aurora is the world's first self-building AI operating system with a 9-agent specialist team. 100% local, no cloud, no subscription.">
+<meta property="og:title" content="Aurora OS — The AI That Builds Itself">
+<meta property="og:description" content="9 specialist AI agents. Runs entirely on your machine. No cloud. No subscription. No code required.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aurora-system.ca">
 <link rel="canonical" href="https://aurora-system.ca">
@@ -14,753 +14,864 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:      #03080f;
-    --bg2:     #060d16;
-    --bg3:     #08111c;
-    --accent:  #7c3aed;
-    --accent2: #a78bfa;
-    --accent3: #5b21b6;
-    --aurora1: #00e5aa;
-    --aurora2: #00c4e8;
-    --aurora3: #7c3aed;
-    --aurora4: #22c55e;
-    --text:    #eef2f7;
-    --dim:     #5a7a8a;
-    --dim2:    #1a2a35;
-    --green:   #00e5aa;
-    --yellow:  #fbbf24;
-    --border:  #0f2030;
-    --radius:  14px;
+    --bg:        #03030a;
+    --bg2:       #060614;
+    --bg3:       #0a0a1a;
+    --green:     #00ff88;
+    --green2:    #00e676;
+    --cyan:      #00e5ff;
+    --cyan2:     #18ffff;
+    --purple:    #aa00ff;
+    --purple2:   #7c4dff;
+    --magenta:   #ff00e5;
+    --blue:      #2979ff;
+    --text:      #f0f0ff;
+    --dim:       #6070a0;
+    --radius:    16px;
   }
 
   html { scroll-behavior: smooth; }
+
   body {
     background: var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow-x: hidden;
   }
 
-  /* ── Aurora Borealis background ── */
-  .aurora-bg {
+  /* === AURORA BOREALIS BACKGROUND === */
+  .aurora-canvas {
     position: fixed;
     inset: 0;
-    z-index: 0;
     pointer-events: none;
+    z-index: 0;
     overflow: hidden;
   }
-  .aurora-bg::before,
-  .aurora-bg::after,
-  .aurora-bg .a3,
-  .aurora-bg .a4 {
-    content: '';
+
+  .aurora-band {
     position: absolute;
+    width: 160%;
+    height: 55%;
+    left: -30%;
+    top: -10%;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0;
+    filter: blur(60px);
     mix-blend-mode: screen;
-  }
-  .aurora-bg::before {
-    width: 120%; height: 60%;
-    top: -20%; left: -10%;
-    background: radial-gradient(ellipse, rgba(0,229,170,0.25) 0%, rgba(0,196,232,0.12) 40%, transparent 70%);
-    animation: aurora-drift1 18s ease-in-out infinite;
-  }
-  .aurora-bg::after {
-    width: 100%; height: 55%;
-    top: -15%; right: -10%;
-    background: radial-gradient(ellipse, rgba(124,58,237,0.2) 0%, rgba(0,196,232,0.1) 40%, transparent 70%);
-    animation: aurora-drift2 22s ease-in-out infinite;
-  }
-  .aurora-bg .a3 {
-    content: '';
-    width: 80%; height: 45%;
-    top: -10%; left: 20%;
-    background: radial-gradient(ellipse, rgba(34,197,94,0.15) 0%, rgba(0,229,170,0.1) 40%, transparent 70%);
-    animation: aurora-drift3 26s ease-in-out infinite;
-  }
-  .aurora-bg .a4 {
-    content: '';
-    width: 70%; height: 40%;
-    top: -5%; left: 10%;
-    background: radial-gradient(ellipse, rgba(0,196,232,0.18) 0%, rgba(124,58,237,0.08) 50%, transparent 70%);
-    animation: aurora-drift4 20s ease-in-out infinite;
+    opacity: 0.55;
   }
 
-  @keyframes aurora-drift1 {
-    0%   { opacity: 0;    transform: translateX(0%)   translateY(0%)   scaleY(1); }
-    15%  { opacity: 0.9; }
-    50%  { opacity: 0.7;  transform: translateX(8%)   translateY(-6%)  scaleY(1.2); }
-    85%  { opacity: 0.9; }
-    100% { opacity: 0;    transform: translateX(0%)   translateY(0%)   scaleY(1); }
+  .aurora-band:nth-child(2) {
+    background: linear-gradient(105deg,
+      transparent 0%,
+      rgba(0,255,136,0.7) 20%,
+      rgba(0,229,255,0.6) 45%,
+      rgba(124,77,255,0.5) 70%,
+      transparent 100%);
+    animation: aurora1 12s ease-in-out infinite alternate;
   }
-  @keyframes aurora-drift2 {
-    0%   { opacity: 0;    transform: translateX(0%)   translateY(0%)   scaleY(1); }
-    20%  { opacity: 0.8; }
-    55%  { opacity: 0.6;  transform: translateX(-10%) translateY(-8%)  scaleY(1.15); }
-    80%  { opacity: 0.8; }
-    100% { opacity: 0;    transform: translateX(0%)   translateY(0%)   scaleY(1); }
+  .aurora-band:nth-child(3) {
+    background: linear-gradient(95deg,
+      transparent 0%,
+      rgba(170,0,255,0.5) 15%,
+      rgba(0,229,255,0.55) 40%,
+      rgba(0,255,136,0.45) 65%,
+      transparent 100%);
+    top: 5%;
+    animation: aurora2 16s ease-in-out infinite alternate;
+    opacity: 0.45;
   }
-  @keyframes aurora-drift3 {
-    0%   { opacity: 0;    transform: translateX(0%)   translateY(0%)   scaleY(1); }
-    25%  { opacity: 0.7; }
-    60%  { opacity: 0.5;  transform: translateX(5%)   translateY(-10%) scaleY(1.3); }
-    75%  { opacity: 0.7; }
-    100% { opacity: 0;    transform: translateX(0%)   translateY(0%)   scaleY(1); }
-  }
-  @keyframes aurora-drift4 {
-    0%   { opacity: 0;    transform: translateX(0%)   translateY(0%)   scaleY(1); }
-    10%  { opacity: 0.85; }
-    45%  { opacity: 0.65; transform: translateX(-6%)  translateY(-5%)  scaleY(1.1); }
-    90%  { opacity: 0.85; }
-    100% { opacity: 0;    transform: translateX(0%)   translateY(0%)   scaleY(1); }
-  }
-
-  /* All page sections sit above the aurora */
-  nav, section, .hero, .founder-strip, .stats-bar,
-  .section-wrap, .nd-section, .waitlist-section,
-  .cta-section, footer, .ai-wrap, [class*="wrap"],
-  [class*="section"] {
-    position: relative;
-    z-index: 1;
+  .aurora-band:nth-child(4) {
+    background: linear-gradient(115deg,
+      transparent 0%,
+      rgba(41,121,255,0.4) 20%,
+      rgba(0,229,255,0.5) 50%,
+      rgba(255,0,229,0.3) 80%,
+      transparent 100%);
+    top: -5%;
+    animation: aurora3 20s ease-in-out infinite alternate;
+    opacity: 0.35;
   }
 
-  /* ── Nav ── */
+  .aurora-streaks {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 80px,
+      rgba(0,229,255,0.015) 81px,
+      transparent 82px,
+      transparent 160px,
+      rgba(0,255,136,0.012) 161px,
+      transparent 162px
+    );
+    animation: streakShift 8s linear infinite;
+  }
+
+  .aurora-horizon {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: linear-gradient(to top,
+      rgba(0,229,255,0.06) 0%,
+      rgba(0,255,136,0.03) 40%,
+      transparent 100%);
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 72% 5%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 22%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 8% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 92% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 55%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 70%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 68%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 20% 82%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 88%, rgba(255,255,255,0.2) 0%, transparent 100%);
+    opacity: 0.8;
+  }
+
+  @keyframes aurora1 {
+    0%   { transform: translateX(-5%) scaleY(0.9) rotate(-1deg); opacity: 0.55; }
+    33%  { transform: translateX(3%) scaleY(1.1) rotate(0.5deg); opacity: 0.65; }
+    66%  { transform: translateX(-2%) scaleY(0.95) rotate(-0.5deg); opacity: 0.5; }
+    100% { transform: translateX(6%) scaleY(1.05) rotate(1deg); opacity: 0.6; }
+  }
+  @keyframes aurora2 {
+    0%   { transform: translateX(4%) scaleY(1.05) rotate(0.5deg); opacity: 0.45; }
+    50%  { transform: translateX(-6%) scaleY(0.9) rotate(-1deg); opacity: 0.55; }
+    100% { transform: translateX(2%) scaleY(1.1) rotate(0.8deg); opacity: 0.4; }
+  }
+  @keyframes aurora3 {
+    0%   { transform: translateX(-8%) scaleY(0.85) rotate(-0.5deg); opacity: 0.35; }
+    50%  { transform: translateX(5%) scaleY(1.2) rotate(1.5deg); opacity: 0.45; }
+    100% { transform: translateX(-3%) scaleY(1.0) rotate(-1deg); opacity: 0.3; }
+  }
+  @keyframes streakShift {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(162px); }
+  }
+
+  /* === NAV === */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(3,8,15,0.85);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background: rgba(3,3,10,0.85);
     backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(0,229,170,0.08);
-    padding: 0 48px;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 62px;
+    border-bottom: 1px solid rgba(0,229,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 60px;
   }
   .nav-logo {
     font-family: 'Courier New', monospace;
-    font-size: 1.15rem; font-weight: bold;
-    color: var(--aurora1); letter-spacing: 3px;
-    text-decoration: none;
-    text-shadow: 0 0 20px rgba(0,229,170,0.4);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--cyan2);
+    text-shadow: 0 0 16px rgba(0,229,255,0.5);
+    text-transform: uppercase;
   }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
-    color: var(--dim); text-decoration: none; font-size: 0.88rem;
+    color: rgba(180,200,240,0.6);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--aurora1); }
+  .nav-links a:hover { color: var(--cyan2); }
   .nav-cta {
-    background: linear-gradient(135deg, var(--accent) 0%, #0e9f8e 100%);
-    color: #fff;
-    padding: 8px 22px; border-radius: 7px;
-    text-decoration: none; font-size: 0.85rem; font-weight: 600;
-    transition: opacity 0.2s, transform 0.2s;
-    box-shadow: 0 0 20px rgba(0,229,170,0.2);
+    background: rgba(0,229,255,0.1);
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 8px;
+    padding: 8px 18px;
+    color: var(--cyan2) !important;
+    font-weight: 600;
+    font-size: 0.78rem !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
-  .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+  .nav-cta:hover { background: rgba(0,229,255,0.18) !important; color: #fff !important; }
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .nav-links { gap: 16px; }
+    .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+  }
 
-  /* ── Hero ── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
+  /* === CONTENT === */
+  main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 140px 40px 100px;
+    padding: 80px 32px 80px;
+    max-width: 760px;
+    width: 100%;
+  }
+
+  .logo {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--cyan2);
+    margin-bottom: 52px;
+    text-shadow: 0 0 20px rgba(0,229,255,0.6), 0 0 40px rgba(0,229,255,0.3);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 999px;
+    padding: 6px 20px;
+    font-size: 0.72rem;
+    color: var(--cyan2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    box-shadow: 0 0 20px rgba(0,229,255,0.12), inset 0 0 12px rgba(0,229,255,0.05);
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green), 0 0 20px rgba(0,255,136,0.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-size: clamp(3rem, 9vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -3px;
+    margin-bottom: 28px;
+    text-shadow: 0 2px 40px rgba(0,0,20,0.8);
+  }
+  h1 .highlight {
+    background: linear-gradient(120deg,
+      var(--green) 0%, var(--cyan) 35%, var(--cyan2) 55%,
+      var(--purple2) 80%, var(--magenta) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(0,229,255,0.4));
+  }
+
+  .sub {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: rgba(180,200,240,0.7);
+    max-width: 560px;
+    margin-bottom: 56px;
+    line-height: 1.8;
+  }
+
+  /* === SECTION WRAPPER === */
+  .page-section {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    padding: 80px 40px;
+    text-align: left;
+  }
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    color: rgba(160,180,230,0.65);
+    font-size: 1rem;
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,229,255,0.15), transparent);
+    margin: 0 auto;
+  }
+
+  /* === AGENT GRID === */
+  .agent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+  .agent-card {
+    background: rgba(6,6,20,0.8);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 24px 22px 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
   }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(251,191,36,0.07);
-    border: 1px solid rgba(251,191,36,0.25);
-    border-radius: 999px; padding: 6px 18px;
-    font-size: 0.76rem; color: var(--yellow); letter-spacing: 1.5px;
-    text-transform: uppercase; margin-bottom: 36px;
-  }
-  .badge-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--yellow);
-    box-shadow: 0 0 8px var(--yellow);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
-
-  .hero h1 {
-    font-size: clamp(2.6rem, 7vw, 5.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -2px;
-    max-width: 920px;
-    margin-bottom: 28px;
-  }
-  .hero h1 .highlight {
-    background: linear-gradient(135deg, var(--aurora1) 0%, var(--aurora2) 40%, var(--accent2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(0,229,170,0.3));
-  }
-  .hero-sub {
-    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
-    color: #7a9aaa;
-    max-width: 640px;
-    margin-bottom: 52px;
-    line-height: 1.75;
-  }
-  .hero-ctas {
-    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent) 0%, #0e9f8e 100%);
-    color: #fff;
-    padding: 15px 36px; border-radius: 9px;
-    text-decoration: none; font-size: 1rem; font-weight: 700;
-    transition: all 0.2s;
-    box-shadow: 0 0 36px rgba(0,229,170,0.25), 0 0 60px rgba(124,58,237,0.15);
-    letter-spacing: 0.3px;
-  }
-  .btn-primary:hover {
-    box-shadow: 0 0 56px rgba(0,229,170,0.4), 0 0 80px rgba(124,58,237,0.2);
-    transform: translateY(-2px);
-  }
-  .btn-secondary {
-    background: transparent; color: #9bb8c8;
-    padding: 15px 36px; border-radius: 9px;
-    text-decoration: none; font-size: 1rem; font-weight: 500;
-    border: 1px solid #1a2a35;
-    transition: all 0.2s;
-  }
-  .btn-secondary:hover { border-color: var(--aurora1); color: var(--aurora1); }
-
-  /* ── Founder strip ── */
-  .founder-strip {
-    background: rgba(6,13,22,0.95);
-    border-top: 1px solid rgba(0,229,170,0.08);
-    border-bottom: 1px solid rgba(0,229,170,0.08);
-    padding: 20px 40px;
-    text-align: center;
-    color: #3a5a6a;
-    font-size: 0.88rem;
-    position: relative; z-index: 1;
-  }
-  .founder-strip a {
-    color: var(--aurora1); text-decoration: none; font-weight: 600;
-    text-shadow: 0 0 12px rgba(0,229,170,0.3);
-  }
-  .founder-strip a:hover { text-decoration: underline; }
-
-  /* ── Stats ── */
-  .stats-bar {
-    border-bottom: 1px solid var(--border);
-    background: rgba(6,13,22,0.97);
-    padding: 52px 40px;
-    display: flex; justify-content: center;
-    gap: 80px; flex-wrap: wrap;
-    position: relative; z-index: 1;
-  }
-  .stat { text-align: center; }
-  .stat-num {
-    font-size: 2.6rem; font-weight: 900;
-    line-height: 1; font-family: 'Courier New', monospace;
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, var(--aurora1), var(--aurora2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 12px rgba(0,229,170,0.3));
-  }
-  .stat-label { color: #3a5a6a; font-size: 0.82rem; letter-spacing: 0.5px; }
-
-  /* ── Sections ── */
-  .section-wrap { padding: 100px 40px; max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
-  .section-label {
-    font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--aurora1); margin-bottom: 14px;
-    display: block;
-    text-shadow: 0 0 12px rgba(0,229,170,0.4);
-  }
-  .section-title {
-    font-size: clamp(1.9rem, 4vw, 3.2rem);
-    font-weight: 900; line-height: 1.15;
-    margin-bottom: 18px;
-    letter-spacing: -0.5px;
-  }
-  .section-sub {
-    font-size: 1.1rem; color: #4a7080;
-    max-width: 580px; margin-bottom: 64px;
-    line-height: 1.75;
-  }
-
-  /* ── Feature cards ── */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  .feature-card {
-    background: rgba(8,17,28,0.9);
-    border: 1px solid rgba(0,229,170,0.08);
-    border-radius: var(--radius);
-    padding: 36px 32px;
-    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-    backdrop-filter: blur(4px);
-  }
-  .feature-card:hover {
-    border-color: rgba(0,229,170,0.25);
+  .agent-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 40px rgba(0,229,170,0.07), 0 0 0 1px rgba(0,229,170,0.1);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
   }
-  .feature-icon {
-    font-size: 1.7rem; margin-bottom: 18px;
-    display: block;
+  .agent-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: var(--agent-color, var(--cyan));
+    box-shadow: 0 0 16px var(--agent-color, var(--cyan));
   }
-  .feature-title {
-    font-size: 1.05rem; font-weight: 800;
-    margin-bottom: 10px; color: var(--text);
+  .agent-emoji { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .agent-name {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--agent-color, var(--cyan));
+    margin-bottom: 4px;
   }
-  .feature-desc { color: #3a5a6a; font-size: 0.9rem; line-height: 1.75; }
-
-  /* ── AI callout ── */
-  .ai-wrap {
-    background: rgba(6,13,22,0.97);
-    border-top: 1px solid rgba(0,229,170,0.06);
-    border-bottom: 1px solid rgba(0,229,170,0.06);
-    position: relative; z-index: 1;
-  }
-  .ai-callout {
-    padding: 100px 40px;
-    max-width: 1160px; margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .ai-callout-title {
-    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
-    font-weight: 900; line-height: 1.15;
-    margin-bottom: 18px;
-    letter-spacing: -0.5px;
-  }
-  .ai-callout-body {
-    color: #4a7080; line-height: 1.8; font-size: 1rem;
-    margin-bottom: 28px;
-  }
-  .capability-list {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 18px;
-  }
-  .capability-list li {
-    display: flex; align-items: flex-start; gap: 14px;
-    font-size: 0.95rem; line-height: 1.6;
-  }
-  .cap-icon {
-    width: 34px; height: 34px; flex-shrink: 0;
-    background: rgba(0,229,170,0.07);
-    border: 1px solid rgba(0,229,170,0.15);
-    border-radius: 9px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.95rem;
-    margin-top: 1px;
-  }
-  .cap-text strong { display: block; color: var(--text); font-weight: 700; }
-  .cap-text span { color: #3a5a6a; font-size: 0.88rem; }
-
-  /* ── ND section ── */
-  .nd-wrap {
-    position: relative; z-index: 1;
-    background: rgba(6,13,22,0.97);
-    border-top: 1px solid rgba(0,229,170,0.06);
-  }
-  .nd-inner {
-    padding: 100px 40px;
-    max-width: 1160px; margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .nd-title {
-    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
-    font-weight: 900; line-height: 1.15; margin-bottom: 18px;
-  }
-  .nd-body { color: #4a7080; line-height: 1.8; }
-  .nd-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-  .nd-list li {
-    display: flex; align-items: flex-start; gap: 12px;
-    font-size: 0.93rem; line-height: 1.65; color: #4a7080;
-  }
-  .nd-list li::before { content: '✦'; color: var(--aurora1); flex-shrink: 0; margin-top: 2px; }
-
-  /* ── Waitlist ── */
-  .waitlist-section {
-    position: relative; z-index: 1;
-    padding: 100px 40px;
-    display: flex; flex-direction: column; align-items: center;
-    text-align: center;
-  }
-  .coming-soon-pill {
-    display: inline-block;
-    background: rgba(251,191,36,0.07);
-    border: 1px solid rgba(251,191,36,0.25);
-    color: var(--yellow);
-    font-size: 0.72rem; letter-spacing: 2px;
+  .agent-role {
+    font-size: 0.72rem;
+    color: rgba(150,170,210,0.5);
     text-transform: uppercase;
-    padding: 5px 14px; border-radius: 999px;
-    margin-bottom: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
   }
-  .waitlist-card {
-    background: rgba(8,17,28,0.95);
-    border: 1px solid rgba(0,229,170,0.15);
-    border-radius: 20px;
-    padding: 64px 56px;
-    max-width: 580px; width: 100%;
-    margin-top: 52px;
-    box-shadow: 0 0 80px rgba(0,229,170,0.05), 0 0 0 1px rgba(0,229,170,0.05);
-    backdrop-filter: blur(8px);
+  .agent-desc {
+    font-size: 0.85rem;
+    color: rgba(180,195,230,0.7);
+    line-height: 1.6;
   }
-  .waitlist-card h3 {
-    font-size: 1.7rem; font-weight: 900;
-    margin-bottom: 12px; letter-spacing: -0.3px;
-  }
-  .waitlist-card p {
-    color: #3a5a6a; font-size: 0.95rem; line-height: 1.7;
+
+  /* === CLEARSAY SECTION === */
+  .clearsay-hero {
+    background: linear-gradient(135deg,
+      rgba(34,211,238,0.06) 0%,
+      rgba(124,77,255,0.06) 100%);
+    border: 1px solid rgba(34,211,238,0.15);
+    border-radius: 24px;
+    padding: 48px 44px;
     margin-bottom: 32px;
   }
-  .waitlist-form {
-    display: flex; flex-direction: column; gap: 12px;
+  .clearsay-hero .cs-title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 900;
+    background: linear-gradient(120deg, #22d3ee, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
   }
-  .waitlist-form input {
-    background: rgba(3,8,15,0.8);
-    border: 1px solid #0f2030;
-    border-radius: 9px;
-    padding: 14px 18px;
+  .clearsay-hero p {
+    color: rgba(160,185,230,0.75);
+    line-height: 1.8;
+    max-width: 640px;
+    margin-bottom: 24px;
+  }
+  .cs-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cs-tag {
+    background: rgba(34,211,238,0.08);
+    border: 1px solid rgba(34,211,238,0.2);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 0.75rem;
+    color: #22d3ee;
+    letter-spacing: 0.5px;
+  }
+  .cs-conditions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .cs-cond {
+    background: rgba(10,4,32,0.7);
+    border: 1px solid rgba(34,211,238,0.1);
+    border-left: 3px solid #22d3ee;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.82rem;
+    color: rgba(180,200,235,0.75);
+    line-height: 1.5;
+  }
+  .cs-cond strong { color: #22d3ee; display: block; margin-bottom: 4px; }
+  .cs-link {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 14px 32px;
+    background: rgba(34,211,238,0.1);
+    border: 1px solid rgba(34,211,238,0.4);
+    border-radius: 12px;
+    color: #22d3ee;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+  .cs-link:hover {
+    background: rgba(34,211,238,0.2);
+    box-shadow: 0 0 30px rgba(34,211,238,0.2);
+  }
+
+  /* === ND SECTION === */
+  .nd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .nd-card {
+    background: rgba(6,6,20,0.7);
+    border: 1px solid rgba(124,77,255,0.15);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .nd-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .nd-title { font-weight: 700; font-size: 0.95rem; color: var(--purple2); margin-bottom: 6px; }
+  .nd-desc { font-size: 0.82rem; color: rgba(160,175,215,0.65); line-height: 1.6; }
+
+  /* === SIGNUP CARD === */
+  .signup-card {
+    background: rgba(6,6,20,0.85);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-top: 1px solid rgba(0,229,255,0.4);
+    border-radius: 22px;
+    padding: 52px 44px;
+    width: 100%;
+    max-width: 600px;
+    backdrop-filter: blur(20px);
+    box-shadow:
+      0 0 60px rgba(0,229,255,0.06),
+      0 0 120px rgba(0,255,136,0.04),
+      inset 0 1px 0 rgba(0,229,255,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .signup-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 20%; right: 20%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.6;
+  }
+  .signup-card h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .signup-card p {
+    color: rgba(160,180,220,0.65);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 30px;
+  }
+  .signup-form { display: flex; flex-direction: column; gap: 12px; }
+  .signup-form input[type="email"],
+  .signup-form input[type="text"] {
+    background: rgba(0,229,255,0.04);
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 10px;
+    padding: 15px 20px;
     font-size: 0.95rem;
     color: var(--text);
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
     width: 100%;
   }
-  .waitlist-form input:focus { border-color: var(--aurora1); box-shadow: 0 0 0 3px rgba(0,229,170,0.08); }
-  .waitlist-form input::placeholder { color: #1a3040; }
-  .waitlist-form button {
-    background: linear-gradient(135deg, var(--accent) 0%, #0e9f8e 100%);
-    color: #fff; border: none; border-radius: 9px;
-    padding: 15px; font-size: 1rem; font-weight: 700;
-    cursor: pointer; transition: all 0.2s;
-    box-shadow: 0 0 30px rgba(0,229,170,0.2);
-    margin-top: 4px;
+  .signup-form input:focus {
+    border-color: rgba(0,229,255,0.5);
+    box-shadow: 0 0 20px rgba(0,229,255,0.1);
   }
-  .waitlist-form button:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 0 50px rgba(0,229,170,0.35); }
-  .waitlist-note { margin-top: 14px; color: #1a3040; font-size: 0.78rem; }
+  .signup-form input::placeholder { color: rgba(100,130,180,0.5); }
+  .signup-form button {
+    background: linear-gradient(135deg, rgba(0,229,255,0.15) 0%, rgba(0,255,136,0.15) 100%);
+    border: 1px solid rgba(0,229,255,0.5);
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--cyan2);
+    transition: all 0.25s;
+    box-shadow: 0 0 30px rgba(0,229,255,0.15), inset 0 1px 0 rgba(0,229,255,0.2);
+    margin-top: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .signup-form button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,255,136,0.2), rgba(0,229,255,0.2));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .signup-form button:hover {
+    border-color: var(--cyan2);
+    box-shadow: 0 0 50px rgba(0,229,255,0.3), 0 0 80px rgba(0,255,136,0.15);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .signup-form button:hover::before { opacity: 1; }
+  .signup-note {
+    margin-top: 16px;
+    color: rgba(100,120,160,0.5);
+    font-size: 0.76rem;
+  }
   .success-msg {
     display: none;
-    color: var(--aurora1);
-    font-size: 1rem; font-weight: 600;
-    padding: 18px;
-    background: rgba(0,229,170,0.05);
-    border: 1px solid rgba(0,229,170,0.2);
-    border-radius: 9px;
+    color: var(--green);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 20px;
+    background: rgba(0,255,136,0.05);
+    border: 1px solid rgba(0,255,136,0.2);
+    border-radius: 10px;
     margin-top: 8px;
+    text-shadow: 0 0 20px rgba(0,255,136,0.4);
   }
 
-  /* ── Footer ── */
-  .footer-outer {
-    border-top: 1px solid rgba(0,229,170,0.06);
-    position: relative; z-index: 1;
+  footer {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 36px 40px;
+    color: rgba(100,120,160,0.35);
+    font-size: 0.75rem;
+    text-align: center;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
-  .footer-wrap {
-    padding: 40px 48px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 20px;
-    max-width: 1160px; margin: 0 auto;
-  }
-  .footer-logo {
-    font-family: 'Courier New', monospace;
-    color: var(--aurora1); font-weight: bold;
-    font-size: 0.95rem; letter-spacing: 2.5px;
-    text-decoration: none;
-    text-shadow: 0 0 12px rgba(0,229,170,0.3);
-  }
-  .footer-links { display: flex; gap: 28px; }
-  .footer-links a { color: #2a4050; font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--aurora1); }
-  .footer-copy { color: #1a3040; font-size: 0.78rem; }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+  .footer-links a { color: rgba(100,130,180,0.5); text-decoration: none; font-size: 0.72rem; }
+  .footer-links a:hover { color: var(--cyan); }
 
-  /* ── Responsive ── */
-  @media (max-width: 800px) {
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 120px 24px 80px; }
-    .stats-bar { gap: 40px; padding: 40px 24px; }
-    .section-wrap, .waitlist-section { padding: 72px 24px; }
-    .ai-callout { grid-template-columns: 1fr; padding: 72px 24px; gap: 48px; }
-    .nd-inner { grid-template-columns: 1fr; padding: 72px 24px; gap: 40px; }
-    .waitlist-card { padding: 40px 24px; }
-    .footer-wrap { flex-direction: column; text-align: center; padding: 36px 24px; }
+  @media (max-width: 600px) {
+    main { padding: 48px 20px 64px; }
+    .signup-card { padding: 36px 24px; }
+    h1 { letter-spacing: -2px; }
+    .page-section { padding: 60px 20px; }
+    .clearsay-hero { padding: 32px 24px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Aurora Borealis animated background -->
-<div class="aurora-bg" aria-hidden="true">
-  <div class="a3"></div>
-  <div class="a4"></div>
+<!-- Aurora borealis background -->
+<div class="aurora-canvas">
+  <div class="stars"></div>
+  <div class="aurora-band"></div>
+  <div class="aurora-band"></div>
+  <div class="aurora-band"></div>
+  <div class="aurora-streaks"></div>
+  <div class="aurora-horizon"></div>
 </div>
 
-<!-- Nav -->
+<!-- Navigation -->
 <nav>
-  <a class="nav-logo" href="#">AURORA</a>
+  <div class="nav-logo">Aurora OS</div>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
-    <li><a href="#ai">The AI</a></li>
-    <li><a href="#nd">ND-Friendly</a></li>
-    <li><a href="#waitlist">Early Access</a></li>
+    <li><a href="#team">AI Team</a></li>
+    <li><a href="#clearsay">ClearSay</a></li>
+    <li><a href="#nd-friendly">ND-Friendly</a></li>
+    <li><a href="#access" class="nav-cta">Get Access</a></li>
   </ul>
-  <a class="nav-cta" href="#waitlist">Request Beta</a>
 </nav>
 
 <!-- Hero -->
-<section class="hero">
-  <div class="hero-badge">
+<main id="features">
+  <div class="logo">Aurora OS</div>
+
+  <div class="badge">
     <span class="badge-dot"></span>
-    Coming Soon · Now In Development
+    In Development · 9 AI Agents · 100% Local
   </div>
 
   <h1>The AI OS That<br><span class="highlight">Builds Itself</span></h1>
 
-  <p class="hero-sub">
-    Aurora is the world's first self-building AI operating system.
-    Tell her what you need in plain English — she designs it, builds it, wires it in,
-    and makes it available instantly. No code. No limits.
+  <p class="sub">
+    Aurora is a self-building AI operating system that runs entirely on your machine.
+    She comes with a team of 9 specialist AI agents — each an expert in their domain.
+    Tell her what you need in plain English. She routes it, builds it, and wires it in.
+    No cloud. No subscriptions. No code required.
+  </p>
+</main>
+
+<div class="section-divider"></div>
+
+<!-- Agent Team -->
+<section class="page-section" id="team">
+  <div class="section-label">The Team</div>
+  <h2 class="section-title">9 Specialist AI Agents.<br>One OS. Zero Cloud.</h2>
+  <p class="section-sub">
+    Aurora manages a full team of specialist AIs — each with deep domain knowledge,
+    dedicated tools, and their own personality. She routes tasks automatically,
+    coordinates between agents when needed, and stays in the loop on everything.
   </p>
 
-  <div class="hero-ctas">
-    <a class="btn-primary" href="#waitlist">Request Beta Access</a>
-    <a class="btn-secondary" href="#features">See What She Can Do →</a>
+  <div class="agent-grid">
+    <div class="agent-card" style="--agent-color: #06b6d4">
+      <span class="agent-emoji">🌌</span>
+      <div class="agent-name">Aurora</div>
+      <div class="agent-role">OS Manager · Settings · Coordinator</div>
+      <div class="agent-desc">The OS itself. Aurora manages files, packages, settings, and all her specialist agents. She knows every file, routes every task, and stays in the loop on everything the team does.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #3b82f6">
+      <span class="agent-emoji">💻</span>
+      <div class="agent-name">CodeSense</div>
+      <div class="agent-role">Code · Debug · Optimize · Test</div>
+      <div class="agent-desc">Deep code expertise across Python, JS, TypeScript, Go, Rust and more. Handles debugging, optimization, code review, refactoring, test suites, and deep system scans.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #10b981">
+      <span class="agent-emoji">🌐</span>
+      <div class="agent-name">WebDev</div>
+      <div class="agent-role">Websites · HTML/CSS/JS · React · APIs</div>
+      <div class="agent-desc">Full-stack web specialist. Builds complete sites, React apps, REST APIs, and interactive frontends. Expert in responsive design, accessibility, and modern web standards.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #f59e0b">
+      <span class="agent-emoji">🔨</span>
+      <div class="agent-name">BuilderBob</div>
+      <div class="agent-role">Desktop Apps · Mobile · GUIs · Scaffolding</div>
+      <div class="agent-desc">App builder. Scaffolds desktop apps (Electron, Tkinter, Qt), mobile apps, cross-platform GUIs, and complete project structures from a description in plain English.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #8b5cf6">
+      <span class="agent-emoji">📊</span>
+      <div class="agent-name">DataSci</div>
+      <div class="agent-role">Data · Analytics · ML · Visualization</div>
+      <div class="agent-desc">Data and ML specialist. Handles data analysis, pandas, SQL, chart generation, machine learning pipelines, and data cleaning. Turns raw data into insight.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #ef4444">
+      <span class="agent-emoji">🛡</span>
+      <div class="agent-name">SecuritySam</div>
+      <div class="agent-role">Security · Pen Testing · Hardening · Privacy</div>
+      <div class="agent-desc">Cybersecurity specialist. Security audits, pen testing concepts, system hardening, privacy tools, vulnerability scanning, and safe coding practices.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #ec4899">
+      <span class="agent-emoji">🎮</span>
+      <div class="agent-name">GameGirl Grace</div>
+      <div class="agent-role">Gaming · Streaming · Game Dev · Community</div>
+      <div class="agent-desc">Your gaming AI. Handles games, streaming setup, hardware recommendations, game development, gaming communities, walkthroughs, and building custom game experiences.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #f97316">
+      <span class="agent-emoji">📱</span>
+      <div class="agent-name">ReelDeal</div>
+      <div class="agent-role">Social Media · Content · Strategy · Growth</div>
+      <div class="agent-desc">Social media expert. Instagram, TikTok, Twitter/X, YouTube, LinkedIn. Content strategy, post writing, analytics tips, trend tracking, and audience growth tactics.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #a855f7">
+      <span class="agent-emoji">🎵</span>
+      <div class="agent-name">MixFlix</div>
+      <div class="agent-role">Audio · Video · Music · Streaming · Production</div>
+      <div class="agent-desc">Audio and video specialist. Music production, podcast editing, video editing, mixing, mastering, streaming setup, DAWs, and creative media workflows.</div>
+    </div>
+    <div class="agent-card" style="--agent-color: #22d3ee">
+      <span class="agent-emoji">🌈</span>
+      <div class="agent-name">ClearSay</div>
+      <div class="agent-role">AAC · Accessibility · Autism · Non-Verbal</div>
+      <div class="agent-desc">Communication advocate. Interprets AAC boards, simplifies responses, and acts as an advocate for non-verbal users — making every Aurora agent accessible. <a href="clearsay.html" style="color:#22d3ee">Learn more →</a></div>
+    </div>
   </div>
 </section>
 
-<!-- Founder strip -->
-<div class="founder-strip">
-  From the creator of <a href="https://www.understandinghumans.app" target="_blank">understandinghumans.app</a>
-   — building AI that works for every kind of mind.
-</div>
+<div class="section-divider"></div>
 
-<!-- Stats -->
-<div class="stats-bar">
-  <div class="stat">
-    <div class="stat-num">260+</div>
-    <div class="stat-label">Modules built & working</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Local — your machine, your data</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">$0</div>
-    <div class="stat-label">Subscriptions or API fees</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">Grows smarter over time</div>
-  </div>
-</div>
-
-<!-- Features -->
-<div class="section-wrap" id="features">
-  <span class="section-label">What Aurora does</span>
-  <h2 class="section-title">An operating system that<br>evolves with every conversation</h2>
-  <p class="section-sub">Aurora isn't a chatbot. She's a complete AI-powered operating environment that writes, tests, and deploys her own capabilities on demand.</p>
-
-  <div class="features-grid">
-    <div class="feature-card">
-      <span class="feature-icon">⚡</span>
-      <div class="feature-title">She Builds Her Own Features</div>
-      <div class="feature-desc">Ask Aurora to add any capability in plain English. She designs the solution, writes it, tests it, and wires it into herself — available to you immediately.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🔒</span>
-      <div class="feature-title">100% On Your Machine</div>
-      <div class="feature-desc">Aurora runs entirely on your computer. Your conversations, your projects, your data — none of it ever touches a server. No cloud dependency, ever.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🧠</span>
-      <div class="feature-title">Gets Smarter Over Time</div>
-      <div class="feature-desc">Every task Aurora completes makes her more capable. She builds a growing library of tools and knowledge that compounds with every session.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🌐</span>
-      <div class="feature-title">Web Interface + Terminal</div>
-      <div class="feature-desc">A beautiful dark web UI at your local address, or interact straight from the terminal. Same intelligence, same power — your choice of interface.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🔄</span>
-      <div class="feature-title">Self-Healing</div>
-      <div class="feature-desc">Aurora monitors her own health. If something breaks, she diagnoses it and fixes it herself — no manual intervention, no error messages left hanging.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">📋</span>
-      <div class="feature-title">Task-Driven Growth</div>
-      <div class="feature-desc">Aurora maintains her own development backlog. Tell her to "keep going" and she works through it — building herself feature by feature, autonomously.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🚀</span>
-      <div class="feature-title">Full Deployment Suite</div>
-      <div class="feature-desc">From idea to deployed project — Aurora handles scaffolding, dependencies, Git, and deployment to hosting platforms. All in one conversation.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">💬</span>
-      <div class="feature-title">No Syntax. No Commands.</div>
-      <div class="feature-desc">Aurora understands what you mean, not just what you type. Typos, incomplete sentences, vague requests — she figures it out and asks only when she truly needs to.</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🔋</span>
-      <div class="feature-title">No Ongoing Costs</div>
-      <div class="feature-desc">Aurora is free and open source. The AI that powers her runs locally — no API keys, no monthly bill, no usage limits. Own it completely.</div>
-    </div>
-  </div>
-</div>
-
-<!-- AI Capabilities -->
-<div class="ai-wrap" id="ai">
-  <div class="ai-callout">
-    <div>
-      <span class="section-label">The intelligence behind Aurora</span>
-      <h2 class="ai-callout-title">A local AI brain that never stops learning</h2>
-      <p class="ai-callout-body">
-        Aurora is powered by a state-of-the-art large language model running entirely on your hardware.
-        She doesn't just answer questions — she reasons, plans, writes real working solutions,
-        and validates her own output before handing anything to you.
-      </p>
-      <p class="ai-callout-body">
-        Aurora understands context across your entire session, remembers your projects and preferences,
-        and builds a personalised knowledge base that grows the more you use her.
-        There's no reset button. She just gets better.
-      </p>
-      <a class="btn-primary" href="#waitlist" style="display:inline-block; margin-top:12px;">Get Early Access</a>
-    </div>
-    <ul class="capability-list">
-      <li>
-        <div class="cap-icon">🧩</div>
-        <div class="cap-text">
-          <strong>Autonomous reasoning</strong>
-          <span>Plans multi-step tasks without being prompted at every stage</span>
-        </div>
-      </li>
-      <li>
-        <div class="cap-icon">✍️</div>
-        <div class="cap-text">
-          <strong>Real code generation</strong>
-          <span>Writes, tests, and validates functional solutions — not summaries</span>
-        </div>
-      </li>
-      <li>
-        <div class="cap-icon">🔎</div>
-        <div class="cap-text">
-          <strong>Self-diagnostic scanning</strong>
-          <span>Detects her own errors and corrects them without your involvement</span>
-        </div>
-      </li>
-      <li>
-        <div class="cap-icon">📚</div>
-        <div class="cap-text">
-          <strong>Persistent memory</strong>
-          <span>Remembers your projects, preferences, and prior work across sessions</span>
-        </div>
-      </li>
-      <li>
-        <div class="cap-icon">🔌</div>
-        <div class="cap-text">
-          <strong>Auto-wiring</strong>
-          <span>Every new capability she builds is immediately wired in and accessible</span>
-        </div>
-      </li>
-      <li>
-        <div class="cap-icon">🌍</div>
-        <div class="cap-text">
-          <strong>Runs on consumer hardware</strong>
-          <span>No GPU cluster required — Aurora runs on the machine you already own</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<!-- ND Friendly -->
-<div class="nd-wrap" id="nd">
-  <div class="nd-inner">
-    <div>
-      <span class="section-label">Designed for neurodivergent minds</span>
-      <h2 class="nd-title">Built for the way<br>your brain actually works</h2>
-      <p class="nd-body">
-        Aurora was designed from the ground up for ADHD, autism, dyslexia, and other ND profiles.
-        No complex menus, no setup wizards, no cognitive overload — just a conversation.
-        She meets you where you are, every time.
-      </p>
-    </div>
-    <ul class="nd-list">
-      <li>Plain English only — no syntax or commands to memorise</li>
-      <li>No context switching — your entire workspace in one window</li>
-      <li>Aurora remembers where you left off, every session</li>
-      <li>One step at a time — say "keep going" and she handles the rest</li>
-      <li>No decision fatigue — Aurora proposes, you approve</li>
-      <li>Forgiving input — she corrects typos and interprets intent</li>
-      <li>Works at your pace — no timeouts, no pressure</li>
-      <li>Dark interface by default, easy on the eyes</li>
-    </ul>
-  </div>
-</div>
-
-<!-- Waitlist -->
-<div class="waitlist-section" id="waitlist">
-  <span class="coming-soon-pill">Not released yet</span>
-  <span class="section-label">Early access</span>
-  <h2 class="section-title">Aurora is almost ready</h2>
-  <p style="color:#3a5a6a; max-width:520px; line-height:1.75; font-size:1.05rem;">
-    She's in active development — building herself every day.
-    Leave your details and we'll reach out personally when beta spots open up.
+<!-- ClearSay -->
+<section class="page-section" id="clearsay">
+  <div class="section-label">Accessibility</div>
+  <h2 class="section-title" style="background:linear-gradient(120deg,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">🌈 Meet ClearSay</h2>
+  <p class="section-sub">
+    ClearSay is Aurora's dedicated AAC and accessibility specialist.
+    Activate her with AAC mode or by saying her name — and she becomes a
+    communication bridge between non-verbal users and every Aurora capability.
   </p>
 
-  <div class="waitlist-card">
-    <h3>Request Beta Access</h3>
-    <p>Free forever. 100% local. No cloud, no subscription.<br>Limited spots — serious testers only.</p>
-    <form class="waitlist-form" id="waitlist-form">
+  <div class="clearsay-hero">
+    <div class="cs-title">Every person has a voice. ClearSay makes sure it is heard.</div>
+    <p>
+      ClearSay interprets picture boards, symbol sequences, and simple word selections.
+      She translates them into full requests, routes them to the right specialist agent,
+      and returns the answer in simplified, accessible language — with emoji support and clear steps.
+    </p>
+    <p>
+      In Advocate Mode, she interacts with Aurora's apps <em>on behalf</em> of the non-verbal user —
+      the way a real communication advocate would. She speaks for you, not instead of you.
+    </p>
+    <div class="cs-tags">
+      <span class="cs-tag">AAC Boards</span>
+      <span class="cs-tag">Picture Exchange</span>
+      <span class="cs-tag">Symbol Interpretation</span>
+      <span class="cs-tag">Advocate Mode</span>
+      <span class="cs-tag">Response Simplification</span>
+      <span class="cs-tag">Emoji Navigation</span>
+      <span class="cs-tag">PECS Support</span>
+      <span class="cs-tag">Source Citations</span>
+      <span class="cs-tag">Shareable Profile</span>
+    </div>
+  </div>
+
+  <p style="color:rgba(160,180,225,0.65);margin-bottom:24px;font-size:.95rem;">ClearSay supports users with a wide range of communication needs:</p>
+  <div class="cs-conditions">
+    <div class="cs-cond"><strong>Autism / ASD</strong>~1 in 36 children (CDC, 2023). 25–30% non-speaking. Deep support for AAC, sensory needs, gestalt language processing.</div>
+    <div class="cs-cond"><strong>Cerebral Palsy</strong>50–80% have communication difficulties. ClearSay supports switch access, eye gaze, and all SGD types.</div>
+    <div class="cs-cond"><strong>ALS / MND</strong>Progressive loss of speech. ClearSay helps navigate Aurora entirely via eye gaze or minimal input.</div>
+    <div class="cs-cond"><strong>Aphasia</strong>Language loss from stroke or TBI — not intellectual disability. ClearSay preserves dignity and maximizes communication.</div>
+    <div class="cs-cond"><strong>Rett Syndrome</strong>Eye gaze as primary communication. ClearSay optimizes for low-motor-demand input.</div>
+    <div class="cs-cond"><strong>Down Syndrome</strong>Receptive language exceeds expressive. Early AAC introduction supports and enhances communication.</div>
+    <div class="cs-cond"><strong>Angelman Syndrome</strong>Minimal/no spoken language. ClearSay works with symbols, SGDs, and gestures.</div>
+    <div class="cs-cond"><strong>Selective Mutism</strong>Can speak in some contexts, not others. ClearSay provides a bridge — AAC as a low-pressure alternative.</div>
+    <div class="cs-cond"><strong>Locked-in Syndrome</strong>Eye gaze and minimal movement input. ClearSay works with whatever the user has.</div>
+    <div class="cs-cond"><strong>TBI / Brain Injury</strong>Cognitive-communication support. ClearSay adapts to temporary or long-term AAC needs.</div>
+  </div>
+
+  <a href="clearsay.html" class="cs-link">Learn more about ClearSay →</a>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ND-Friendly -->
+<section class="page-section" id="nd-friendly">
+  <div class="section-label">Neurodivergent Design</div>
+  <h2 class="section-title">Built for Minds<br>That Work Differently</h2>
+  <p class="section-sub">
+    Aurora was built by and for neurodivergent people. She speaks plain English,
+    handles imperfect input, never loses the thread, and adapts to you — not the other way around.
+  </p>
+
+  <div class="nd-grid">
+    <div class="nd-card">
+      <div class="nd-icon">🗣</div>
+      <div class="nd-title">Plain English Always</div>
+      <div class="nd-desc">No command syntax, no flags, no jargon. Tell Aurora what you need the way you'd tell a person.</div>
+    </div>
+    <div class="nd-card">
+      <div class="nd-icon">🔒</div>
+      <div class="nd-title">100% Local — Your Data Stays Yours</div>
+      <div class="nd-desc">Everything runs on your machine. Nothing is sent to the cloud. No surveillance, no data collection.</div>
+    </div>
+    <div class="nd-card">
+      <div class="nd-icon">🧵</div>
+      <div class="nd-title">Continuous Memory</div>
+      <div class="nd-desc">Aurora remembers across sessions. You never have to re-explain context, preferences, or in-progress work.</div>
+    </div>
+    <div class="nd-card">
+      <div class="nd-icon">📋</div>
+      <div class="nd-title">One Place For Everything</div>
+      <div class="nd-desc">Code, files, packages, notes, settings, agents — one unified workspace. No app-switching, no context loss.</div>
+    </div>
+    <div class="nd-card">
+      <div class="nd-icon">⚡</div>
+      <div class="nd-title">Handles Imperfect Input</div>
+      <div class="nd-desc">Typos, incomplete thoughts, fragmented instructions — Aurora figures out what you mean and gets it done.</div>
+    </div>
+    <div class="nd-card">
+      <div class="nd-icon">🌈</div>
+      <div class="nd-title">ClearSay Accessibility Layer</div>
+      <div class="nd-desc">For non-verbal, AAC, and disabled users: ClearSay makes every Aurora feature accessible with picture boards and advocate mode.</div>
+    </div>
+    <div class="nd-card">
+      <div class="nd-icon">🔄</div>
+      <div class="nd-title">Self-Healing & Self-Building</div>
+      <div class="nd-desc">Aurora fixes her own bugs and builds new features when asked. No IT support, no technical expertise required.</div>
+    </div>
+    <div class="nd-card">
+      <div class="nd-icon">💬</div>
+      <div class="nd-title">Talk, Don't Type Commands</div>
+      <div class="nd-desc">Aurora understands natural speech patterns. Say "that last thing" or "the website thing" — she knows what you mean.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Access -->
+<section class="page-section" id="access" style="align-items:center;display:flex;flex-direction:column;text-align:center;">
+  <div class="section-label">Early Access</div>
+  <h2 class="section-title" style="text-align:center">Be One of the First.<br>Shape What She Becomes.</h2>
+  <p class="section-sub" style="text-align:center">
+    We're opening Aurora to a small group of testers. Early testers help define what comes next.
+    Drop your email and we will reach out personally when a spot opens.
+  </p>
+
+  <div class="signup-card">
+    <h2>Request Tester Access</h2>
+    <p>We're looking for early testers across all user types — developers, creators, AAC users, caregivers, and curious minds. Drop your email and we will be in touch personally.</p>
+    <form class="signup-form" id="signup-form">
       <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="email" placeholder="your@email.com" required>
-      <button type="submit">Send Request</button>
+      <button type="submit">Request Tester Access</button>
     </form>
     <div class="success-msg" id="success-msg">
-      Request sent! We'll be in touch when beta opens.
+      You are on the list — we will be in touch when it is ready.
     </div>
-    <p class="waitlist-note">We'll only email you when it's time to test. No newsletters.</p>
+    <p class="signup-note">We will only email you when it is time to test. No newsletters, no spam.</p>
   </div>
-</div>
+</section>
 
-<!-- Footer -->
-<div class="footer-outer">
-  <div class="footer-wrap">
-    <a class="footer-logo" href="#">AURORA OS</a>
-    <div class="footer-links">
-      <a href="#features">Features</a>
-      <a href="#ai">The AI</a>
-      <a href="#nd">ND-Friendly</a>
-      <a href="#waitlist">Early Access</a>
-      <a href="https://www.understandinghumans.app" target="_blank">understandinghumans.app</a>
-    </div>
-    <div class="footer-copy">© 2026 Aurora OS · Built by Aurora, for humans</div>
+<footer>
+  <div class="footer-links">
+    <a href="#features">Features</a>
+    <a href="#team">AI Team</a>
+    <a href="#clearsay">ClearSay</a>
+    <a href="#nd-friendly">ND-Friendly</a>
+    <a href="#access">Get Access</a>
+    <a href="clearsay.html">ClearSay Page</a>
   </div>
-</div>
+  <div>© 2026 Aurora OS · aurora-system.ca · Built by Kristina Green</div>
+</footer>
 
 <script>
-document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+document.getElementById('signup-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const name  = this.querySelector('input[name="name"]').value.trim();
   const email = this.querySelector('input[name="email"]').value.trim();
+
   const mailto = 'mailto:understandinghumansapp@gmail.com'
-    + '?subject=' + encodeURIComponent('Aurora Beta Request — ' + name)
+    + '?subject=' + encodeURIComponent('Aurora Tester Signup — ' + name)
     + '&body='    + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nI would like to test Aurora.');
+
   window.location.href = mailto;
+
   this.style.display = 'none';
   document.getElementById('success-msg').style.display = 'block';
 });
