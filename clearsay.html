@@ -295,6 +295,58 @@
   .profile-field strong { color: var(--teal); display: block; font-size: 0.7rem;
     text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
 
+  /* === UH COMMITMENT === */
+  .uh-commitment {
+    background: rgba(6,6,20,0.85);
+    border: 1px solid rgba(34,211,238,0.18);
+    border-radius: 22px; padding: 48px 44px;
+    position: relative; overflow: hidden;
+  }
+  .uh-commitment::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), #a78bfa, var(--teal));
+  }
+  .uh-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(34,211,238,0.07); border: 1px solid rgba(34,211,238,0.25);
+    border-radius: 100px; padding: 8px 20px; margin-bottom: 24px;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal);
+  }
+  .uh-badge-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--teal);
+    animation: pulse 2s infinite;
+  }
+  .uh-commitment h3 {
+    font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; letter-spacing: -0.5px;
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  .uh-commitment h3 span { color: var(--teal); }
+  .uh-commitment .lead {
+    font-size: 1rem; color: rgba(175,195,235,0.8); line-height: 1.8; max-width: 660px;
+    margin-bottom: 36px;
+  }
+  .uh-apps-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;
+    margin-bottom: 36px;
+  }
+  .uh-app-card {
+    background: rgba(34,211,238,0.04); border: 1px solid rgba(34,211,238,0.1);
+    border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .uh-app-card:hover { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.07); }
+  .uh-app-icon { font-size: 1.4rem; }
+  .uh-app-name { font-weight: 700; color: var(--teal); font-size: 0.88rem; }
+  .uh-app-desc { font-size: 0.77rem; color: rgba(150,170,215,0.65); line-height: 1.5; }
+  .uh-promise {
+    background: rgba(34,211,238,0.06); border: 1px solid rgba(34,211,238,0.2);
+    border-left: 4px solid var(--teal); border-radius: 12px;
+    padding: 20px 24px; font-size: 0.9rem; line-height: 1.7;
+    color: rgba(190,210,245,0.85);
+  }
+  .uh-promise strong { color: var(--teal); }
+
   /* === SIGNUP === */
   .signup-card {
     background: rgba(6,6,20,0.85); border: 1px solid rgba(34,211,238,0.2);
@@ -367,6 +419,7 @@
     <li><a href="#what">What ClearSay Does</a></li>
     <li><a href="#who">Who She Helps</a></li>
     <li><a href="#sources">Sources</a></li>
+    <li><a href="#uh">UH Commitment</a></li>
     <li><a href="#access" class="nav-home">Get Access</a></li>
   </ul>
 </nav>
@@ -610,6 +663,74 @@
 
   <div class="divider"></div>
 
+  <!-- UH Commitment -->
+  <section class="section" id="uh">
+    <div class="section-label">Our Commitment</div>
+    <h2>ClearSay Everywhere — No UH App Ships Without Her</h2>
+    <p class="section-sub">
+      Understanding Humans has made a permanent commitment: every app and system we build
+      for non-verbal users will include ClearSay. Not as an add-on. As a core layer.
+    </p>
+
+    <div class="uh-commitment">
+      <div class="uh-badge"><span class="uh-badge-dot"></span>Understanding Humans — Accessibility Standard</div>
+      <h3>ClearSay is <span>built into every UH product</span><br>for non-verbal users.</h3>
+      <p class="lead">
+        Aurora OS is just the beginning. Understanding Humans is building a growing ecosystem
+        of apps and systems designed for people who communicate differently. Every single one
+        will ship with ClearSay embedded — her symbol interpretation, simplification engine,
+        AAC-aware responses, and advocate mode will be a standard layer across the entire UH platform.
+        If you communicate through AAC, eye gaze, symbols, or pictures,
+        ClearSay will be ready for you before you even open the app.
+      </p>
+
+      <div class="uh-apps-grid">
+        <div class="uh-app-card">
+          <div class="uh-app-icon">🧠</div>
+          <div class="uh-app-name">Aurora OS</div>
+          <div class="uh-app-desc">The flagship platform. ClearSay is active whenever AAC mode is on — coordinating every one of Aurora's 9 specialist agents on behalf of non-verbal users.</div>
+        </div>
+        <div class="uh-app-card">
+          <div class="uh-app-icon">📱</div>
+          <div class="uh-app-name">Aurora Mobile</div>
+          <div class="uh-app-desc">The PWA companion app. ClearSay's picture board and AAC mode toggle are first-class features on every screen — built for one-handed and eye-gaze use.</div>
+        </div>
+        <div class="uh-app-card">
+          <div class="uh-app-icon">📖</div>
+          <div class="uh-app-name">UH Learning Platform</div>
+          <div class="uh-app-desc">The understanding humans education and skills app. ClearSay simplifies every lesson, label, and exercise for AAC users — ensuring learning is never blocked by communication barriers.</div>
+        </div>
+        <div class="uh-app-card">
+          <div class="uh-app-icon">🎮</div>
+          <div class="uh-app-name">UH Game &amp; Social Apps</div>
+          <div class="uh-app-desc">Gaming and social features built by GameGirl Grace and ReelDeal — ClearSay translates the interface into accessible symbol-based navigation for every non-verbal user.</div>
+        </div>
+        <div class="uh-app-card">
+          <div class="uh-app-icon">🏥</div>
+          <div class="uh-app-name">Health &amp; Wellness Tools</div>
+          <div class="uh-app-desc">Body scan, mood tracker, safety plans — every UH mental health and wellness tool will have ClearSay ready to simplify, advocate, and communicate on the user's behalf.</div>
+        </div>
+        <div class="uh-app-card">
+          <div class="uh-app-icon">🔧</div>
+          <div class="uh-app-name">Third-Party Integration</div>
+          <div class="uh-app-desc">ClearSay Portable is a standalone Python module any developer can drop into their app. One import. Full AAC layer. No rebuild required. Open to every UH partner app.</div>
+        </div>
+      </div>
+
+      <div class="uh-promise">
+        <strong>The UH Accessibility Promise:</strong> No Understanding Humans app or system
+        designed for non-verbal users will ship without ClearSay built in.
+        We do not treat accessibility as a future update or an optional layer.
+        ClearSay is infrastructure — as essential as the database, as fundamental as the UI.
+        Every person who uses AAC deserves software that speaks their language from day one.
+        <br><br>
+        <strong>— Understanding Humans, 2026</strong>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
   <!-- Access -->
   <section class="section" id="access" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
     <div class="section-label">Get ClearSay</div>
@@ -643,6 +764,7 @@
     <a href="#what">What ClearSay Does</a>
     <a href="#who">Who She Helps</a>
     <a href="#sources">Sources</a>
+    <a href="#uh">UH Commitment</a>
     <a href="#access">Get Access</a>
   </div>
   <div>© 2026 Aurora OS · ClearSay · Built by Kristina Green · aurora-system.ca</div>
