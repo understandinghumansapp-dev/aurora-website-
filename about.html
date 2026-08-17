@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Aurora OS — What It Is, Who It's For & What It Does</title>
+<meta name="description" content="Discover what Aurora OS is, who it is built for, and how its 16 autonomous specialist agents empower users without labels.">
+<link rel="canonical" href="https://www.aurora-system.ca/about.html">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg-dark: #05020c;
+    --bg-surface: #0d061c;
+    --bg-card: rgba(23, 11, 46, 0.75);
+    --purple-glow: #a855f7;
+    --purple-bright: #c084fc;
+    --green-glow: #00ff88;
+    --cyan-glow: #00f0ff;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-glow: rgba(0, 255, 136, 0.35);
+    --border-purple: rgba(168, 85, 247, 0.4);
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 8px;
+  }
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .aurora-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .aurora-ribbon {
+    position: absolute; width: 160%; height: 60%; left: -30%; top: -10%;
+    border-radius: 50%; filter: blur(65px); mix-blend-mode: screen; opacity: 0.55;
+    background: radial-gradient(circle, rgba(0,255,136,0.5) 0%, rgba(168,85,247,0.4) 50%, transparent 100%);
+    animation: wave 18s ease-in-out infinite alternate;
+  }
+  @keyframes wave {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.08) translate(3%, 4%); }
+  }
+  header {
+    position: sticky; top: 0; z-index: 100; backdrop-filter: blur(16px);
+    background: rgba(5, 2, 12, 0.75); border-bottom: 1px solid var(--border-purple);
+  }
+  .nav-container {
+    max-width: 1240px; margin: 0 auto; padding: 16px 24px; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  .brand-logo { text-decoration: none; font-weight: 800; font-size: 1.35rem; display: flex; align-items: center; gap: 8px; color: #fff; }
+  .brand-name { background: linear-gradient(135deg, #00ff88, #00f0ff, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+  .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 12px var(--green-glow); }
+  .btn-cta {
+    background: linear-gradient(135deg, var(--green-glow), var(--cyan-glow)); color: #03030a;
+    font-weight: 800; padding: 10px 22px; border-radius: var(--radius-sm); text-decoration: none;
+    font-size: 0.92rem; display: inline-block;
+  }
+  main {
+    position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 50px 24px 80px;
+  }
+  .content-card {
+    background: var(--bg-card); border: 1.5px solid var(--border-glow); border-radius: var(--radius-lg);
+    padding: 40px; margin-bottom: 40px; backdrop-filter: blur(12px); box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  }
+  h1 { font-size: 3rem; font-weight: 900; margin-bottom: 20px; line-height: 1.2; }
+  h2 { font-size: 1.8rem; font-weight: 800; color: var(--green-glow); margin-bottom: 16px; }
+  p { color: #cbd5e1; font-size: 1.05rem; margin-bottom: 20px; }
+  ul { padding-left: 24px; margin-bottom: 24px; color: #cbd5e1; font-size: 1rem; }
+  li { margin-bottom: 10px; }
+  footer {
+    border-top: 1px solid var(--border-purple); background: rgba(3, 1, 8, 0.9);
+    padding: 40px 24px; text-align: center; color: var(--text-muted); font-size: 0.9rem;
+  }
+  .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--green-glow); }
+</style>
+</head>
+<body>
+
+<div class="aurora-bg"><div class="aurora-ribbon"></div></div>
+
+<header>
+  <div class="nav-container">
+    <a href="index.html" class="brand-logo"><span>◈</span><span class="brand-name">AURORA OS</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">What Is Aurora?</a></li>
+      <li><a href="clearplus.html">ClearPlus Accessibility</a></li>
+      <li><a href="understanding-humans.html">Understanding Humans</a></li>
+      <li><a href="index.html#signup" class="btn-cta">Early Access</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="content-card">
+    <h1>What Is <span style="color:var(--green-glow);">Aurora OS</span>?</h1>
+    <p>
+      Aurora OS is an intelligent, autonomous operating system built to be a genuine companion to human beings. Rather than acting as a static set of folders and generic apps, Aurora is an active operating environment that runs entirely on your local machine, learns your workflow, and coordinates a team of 16 specialist agents to execute real work on your behalf.
+    </p>
+  </div>
+
+  <div class="content-card">
+    <h2>🎯 Who Is Aurora Built For?</h2>
+    <p><b>Aurora is built for everyone — without labels, barriers, or patronizing interfaces.</b></p>
+    <ul>
+      <li><b>Neurodivergent Minds (ADHD &amp; Autistic)</b>: Designed with focus clarity, direct communication, parallel task organization, and zero cognitive clutter.</li>
+      <li><b>Older Adults &amp; Tech Beginners</b>: Clean, calm modes with step-by-step guidance and scam protection. No confusing acronyms or hidden menus.</li>
+      <li><b>Non-Speaking &amp; AAC Users</b>: Native communication grids and personalized voice synthesis embedded directly into the OS.</li>
+      <li><b>Blind &amp; Low-Vision Users</b>: Real-time visual scene analysis, full DOM narration, and audio-first computer navigation.</li>
+      <li><b>Makers, Developers &amp; Creators</b>: Autonomous code auto-healing, full-stack app scaffolding, automated file management, and media mastering tools.</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h2>⚡ What Does Aurora Do?</h2>
+    <p>
+      Unlike conventional virtual assistants that simply regurgitate internet searches or require manual programming, Aurora's 16 specialist agents have real hands on your local machine:
+    </p>
+    <ul>
+      <li><b>Autonomous Execution</b>: Scaffolds apps, edits files, fixes code errors, models finances, tracks recipes, and manages packages.</li>
+      <li><b>Total Privacy &amp; Local Ownership</b>: Your thoughts, files, conversations, and health logs remain 100% on your device. Zero cloud surveillance.</li>
+      <li><b>ClearPlus Package</b>: Built-in 5 pillars of accessibility that give equal digital power to every user.</li>
+      <li><b>Multi-AI Collaboration</b>: Enables live collaborative rooms where you, Aurora, Google Gemini, and specialist agents work together in harmony.</li>
+    </ul>
+    <div style="text-align:center; margin-top:30px;">
+      <a href="index.html#signup" class="btn-cta">Sign Up for Early Access</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Aurora</a>
+    <a href="clearplus.html">ClearPlus Accessibility</a>
+    <a href="understanding-humans.html">Understanding Humans</a>
+    <a href="https://www.understandinghumans.app" target="_blank">understandinghumans.app ↗</a>
+  </div>
+  <p>© 2026 Aurora OS &amp; Understanding Humans. Built for everyone without labels.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClearPlus Accessibility Suite — The 5 Pillars of Digital Equity</title>
+<meta name="description" content="ClearPlus is Aurora OS's native 5-pillar accessibility package featuring ClearSite, ClearSay, ClearStep, ClearSign, and ClearTouch.">
+<link rel="canonical" href="https://www.aurora-system.ca/clearplus.html">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg-dark: #05020c;
+    --bg-card: rgba(23, 11, 46, 0.85);
+    --green-glow: #00ff88;
+    --cyan-glow: #00f0ff;
+    --purple-bright: #c084fc;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-glow: rgba(0, 255, 136, 0.35);
+    --border-purple: rgba(168, 85, 247, 0.4);
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 8px;
+  }
+  body {
+    background-color: var(--bg-dark); color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.7; min-height: 100vh; overflow-x: hidden;
+  }
+  .aurora-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .aurora-ribbon {
+    position: absolute; width: 160%; height: 60%; left: -30%; top: -10%;
+    border-radius: 50%; filter: blur(65px); mix-blend-mode: screen; opacity: 0.55;
+    background: radial-gradient(circle, rgba(168,85,247,0.5) 0%, rgba(0,255,136,0.4) 50%, transparent 100%);
+    animation: wave 18s ease-in-out infinite alternate;
+  }
+  @keyframes wave { 0% { transform: scale(1); } 100% { transform: scale(1.08) translate(3%, 4%); } }
+  header {
+    position: sticky; top: 0; z-index: 100; backdrop-filter: blur(16px);
+    background: rgba(5, 2, 12, 0.75); border-bottom: 1px solid var(--border-purple);
+  }
+  .nav-container {
+    max-width: 1240px; margin: 0 auto; padding: 16px 24px; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  .brand-logo { text-decoration: none; font-weight: 800; font-size: 1.35rem; display: flex; align-items: center; gap: 8px; color: #fff; }
+  .brand-name { background: linear-gradient(135deg, #00ff88, #00f0ff, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+  .nav-links a:hover, .nav-links a.active { color: #fff; text-shadow: 0 0 12px var(--green-glow); }
+  .btn-cta {
+    background: linear-gradient(135deg, var(--green-glow), var(--cyan-glow)); color: #03030a;
+    font-weight: 800; padding: 10px 22px; border-radius: var(--radius-sm); text-decoration: none;
+    font-size: 0.92rem; display: inline-block;
+  }
+  main { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 50px 24px 80px; }
+  .pillar-card {
+    background: var(--bg-card); border: 1.5px solid var(--border-glow); border-radius: var(--radius-lg);
+    padding: 36px; margin-bottom: 32px; box-shadow: 0 10px 35px rgba(0,0,0,0.6);
+  }
+  .pillar-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .pillar-icon { font-size: 2.2rem; background: rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 12px; }
+  h1 { font-size: 3rem; font-weight: 900; line-height: 1.2; margin-bottom: 16px; }
+  h2 { font-size: 1.6rem; font-weight: 800; color: #fff; }
+  p { color: #cbd5e1; font-size: 1.02rem; margin-bottom: 12px; }
+  ul { padding-left: 24px; color: #cbd5e1; margin-bottom: 16px; }
+  li { margin-bottom: 8px; }
+  footer {
+    border-top: 1px solid var(--border-purple); background: rgba(3, 1, 8, 0.9);
+    padding: 40px 24px; text-align: center; color: var(--text-muted); font-size: 0.9rem;
+  }
+  .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--green-glow); }
+</style>
+</head>
+<body>
+
+<div class="aurora-bg"><div class="aurora-ribbon"></div></div>
+
+<header>
+  <div class="nav-container">
+    <a href="index.html" class="brand-logo"><span>◈</span><span class="brand-name">AURORA OS</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">What Is Aurora?</a></li>
+      <li><a href="clearplus.html" class="active">ClearPlus Accessibility</a></li>
+      <li><a href="understanding-humans.html">Understanding Humans</a></li>
+      <li><a href="index.html#signup" class="btn-cta">Early Access</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="pillar-card" style="border-color:var(--border-purple);">
+    <h1>The <span style="color:var(--green-glow);">ClearPlus</span> 5 Pillars of Digital Equity</h1>
+    <p>
+      ClearPlus is Aurora OS's built-in accessibility architecture. We believe accessibility is not an afterthought or a "special mode" — it is a core civil right. ClearPlus specialists co-navigate apps and websites with full conversational depth, technical accuracy, and zero condescension.
+    </p>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-header">
+      <span class="pillar-icon">👁️</span>
+      <div>
+        <h2>1. ClearSite — Screen Vision &amp; Low-Vision Navigation</h2>
+        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Iris</span>
+      </div>
+    </div>
+    <p>Provides rich semantic audio descriptions of complex screens, charts, and diagrams. Features headless DOM tree narration, high-contrast layouts, and OCR document reading.</p>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-header">
+      <span class="pillar-icon">🌈</span>
+      <div>
+        <h2>2. ClearSay — AAC &amp; Assistive Speech Synthesis</h2>
+        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Clara</span>
+      </div>
+    </div>
+    <p>High-efficiency symbol communication boards and phrase composition engines for non-speaking communicators. Supports personalized vocal synthesis and instant chat integration.</p>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-header">
+      <span class="pillar-icon">🌿</span>
+      <div>
+        <h2>3. ClearStep — Older Adults &amp; Step-by-Step Guidance</h2>
+        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Sage</span>
+      </div>
+    </div>
+    <p>Calm, distraction-free companion that walks users through everyday tasks (banking, appointments, video calls) in plain English. Includes active scam shields and memory prompts.</p>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-header">
+      <span class="pillar-icon">🤟</span>
+      <div>
+        <h2>4. ClearSign — Deaf &amp; Hard-of-Hearing Parity</h2>
+        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Nova</span>
+      </div>
+    </div>
+    <p>Real-time visual captions for system audio, meetings, and videos. Identifies ambient environmental cues (doorbells, alarms, sirens) and ensures 100% visual notification parity.</p>
+  </div>
+
+  <div class="pillar-card">
+    <div class="pillar-header">
+      <span class="pillar-icon">🎯</span>
+      <div>
+        <h2>5. ClearTouch — Motor &amp; Switch Access</h2>
+        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Dex</span>
+      </div>
+    </div>
+    <p>Dwell selection, single/dual switch scanning, enlarged click targets, tremor-filtering algorithms, and full voice command navigation for physical independence.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Aurora</a>
+    <a href="clearplus.html">ClearPlus Accessibility</a>
+    <a href="understanding-humans.html">Understanding Humans</a>
+    <a href="https://www.understandinghumans.app" target="_blank">understandinghumans.app ↗</a>
+  </div>
+  <p>© 2026 Aurora OS &amp; Understanding Humans. Built for everyone without labels.</p>
+</footer>
+
+</body>
+</html>
