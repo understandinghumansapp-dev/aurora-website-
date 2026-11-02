@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClearPlus Accessibility Suite — The 5 Pillars of Digital Equity</title>
-<meta name="description" content="ClearPlus is Aurora OS's native 5-pillar accessibility package featuring ClearSite, ClearSay, ClearStep, ClearSign, and ClearTouch.">
+<title>ClearPlus Accessibility — 7 Universal Access Agents for Users &amp; Partner Apps</title>
+<meta name="description" content="Explore the 7 ClearPlus Universal Access Agents (ClearSite, ClearSay, ClearCare, ClearSign, ClearGaze, ClearTouch, ClearFocus) powering Aurora OS and Understanding Humans, available as a drop-in SDK for other app creators.">
 <link rel="canonical" href="https://www.aurora-system.ca/clearplus.html">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg-dark: #05020c;
-    --bg-card: rgba(23, 11, 46, 0.85);
+    --bg-card: rgba(23, 11, 46, 0.78);
+    --purple-glow: #a855f7;
     --green-glow: #00ff88;
     --cyan-glow: #00f0ff;
-    --purple-bright: #c084fc;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --border-glow: rgba(0, 255, 136, 0.35);
@@ -31,7 +31,7 @@
   .aurora-ribbon {
     position: absolute; width: 160%; height: 60%; left: -30%; top: -10%;
     border-radius: 50%; filter: blur(65px); mix-blend-mode: screen; opacity: 0.55;
-    background: radial-gradient(circle, rgba(168,85,247,0.5) 0%, rgba(0,255,136,0.4) 50%, transparent 100%);
+    background: radial-gradient(circle, rgba(0,255,136,0.5) 0%, rgba(0,240,255,0.4) 50%, transparent 100%);
     animation: wave 18s ease-in-out infinite alternate;
   }
   @keyframes wave { 0% { transform: scale(1); } 100% { transform: scale(1.08) translate(3%, 4%); } }
@@ -56,15 +56,24 @@
   main { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 50px 24px 80px; }
   .pillar-card {
     background: var(--bg-card); border: 1.5px solid var(--border-glow); border-radius: var(--radius-lg);
-    padding: 36px; margin-bottom: 32px; box-shadow: 0 10px 35px rgba(0,0,0,0.6);
+    padding: 36px; margin-bottom: 28px; backdrop-filter: blur(12px); box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   }
-  .pillar-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
-  .pillar-icon { font-size: 2.2rem; background: rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 12px; }
-  h1 { font-size: 3rem; font-weight: 900; line-height: 1.2; margin-bottom: 16px; }
-  h2 { font-size: 1.6rem; font-weight: 800; color: #fff; }
+  .pillar-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .pillar-icon { font-size: 2.4rem; background: rgba(255,255,255,0.06); padding: 10px 14px; border-radius: 12px; }
+  .meta-tag {
+    display: inline-block; background: rgba(0, 255, 136, 0.12); border: 1px solid var(--border-glow);
+    color: var(--green-glow); font-size: 0.82rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    margin-top: 6px;
+  }
+  .who-box {
+    background: rgba(13, 6, 28, 0.85); border-left: 3px solid var(--green-glow);
+    padding: 12px 16px; border-radius: 8px; margin-bottom: 12px; color: #f8fafc; font-size: 0.98rem;
+  }
+  h1 { font-size: 2.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 16px; }
+  h2 { font-size: 1.55rem; font-weight: 800; color: #fff; }
   p { color: #cbd5e1; font-size: 1.02rem; margin-bottom: 12px; }
-  ul { padding-left: 24px; color: #cbd5e1; margin-bottom: 16px; }
-  li { margin-bottom: 8px; }
+  ul { padding-left: 24px; color: #cbd5e1; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
   footer {
     border-top: 1px solid var(--border-purple); background: rgba(3, 1, 8, 0.9);
     padding: 40px 24px; text-align: center; color: var(--text-muted); font-size: 0.9rem;
@@ -85,7 +94,6 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">What Is Aurora?</a></li>
       <li><a href="clearplus.html" class="active">ClearPlus Accessibility</a></li>
-      <li><a href="clearsay.html">ClearSay AAC</a></li>
       <li><a href="understanding-humans.html">Understanding Humans</a></li>
       <li><a href="index.html#signup" class="btn-cta">Early Access</a></li>
     </ul>
@@ -94,78 +102,123 @@
 
 <main>
   <div class="pillar-card" style="border-color:var(--border-purple);">
-    <h1>The <span style="color:var(--green-glow);">ClearPlus</span> 5 Pillars of Digital Equity</h1>
+    <h1>The <span style="color:var(--green-glow);">ClearPlus</span> 7-Agent Universal Access Suite</h1>
     <p>
-      ClearPlus is Aurora OS's built-in accessibility architecture. We believe accessibility is not an afterthought or a "special mode" — it is a core civil right. ClearPlus specialists co-navigate apps and websites with full conversational depth, technical accuracy, and zero condescension.
+      ClearPlus is the universal accessibility architecture powering both <b>Aurora OS</b> (<a href="https://www.aurora-system.ca" style="color:var(--green-glow);">www.aurora-system.ca</a>) and <b>Understanding Humans</b> (<a href="https://www.understandinghumans.app" style="color:var(--green-glow);">www.understandinghumans.app</a>). Every ClearPlus agent explicitly tells users <b>who it is for</b> and <b>what it does</b>—and the entire 7-agent suite is engineered as a drop-in SDK so other app companies can include ClearPlus directly inside their already-made apps.
     </p>
   </div>
 
+  <!-- 1. ClearSay -->
+  <div class="pillar-card">
+    <div class="pillar-header">
+      <span class="pillar-icon">📣</span>
+      <div>
+        <h2>1. ClearSay — Non-Verbal AAC Board &amp; Plain-Language Access</h2>
+        <span class="meta-tag">Specialist: Clara • SDK Hook: AacOverlayWidget + AacService</span>
+      </div>
+    </div>
+    <div class="who-box"><b>Who it is for:</b> Non-speaking, minimally speaking, or situational speech-loss users (autism, aphasia, cerebral palsy, ALS, TBI, selective mutism, or acute stress), AAC symbol-board users, and anyone who wants short plain-language sentences.</div>
+    <p><b>What it does:</b> Provides an always-reachable 50+ symbol communication board across 6 categories (Needs, Feelings, People, Actions, Questions, Medical/Crisis) with tap-to-compose phrase strips, text-to-speech output with visual fallback, and a plain-language guide mode that keeps sentences to 10–12 words with zero jargon or idioms.</p>
+  </div>
+
+  <!-- 2. ClearSign -->
+  <div class="pillar-card">
+    <div class="pillar-header">
+      <span class="pillar-icon">💬</span>
+      <div>
+        <h2>2. ClearSign — Deaf, Hard-of-Hearing &amp; No-Voice Crisis Access</h2>
+        <span class="meta-tag">Specialist: Nova • SDK Hook: ClearSignOverlayWidget + ClearSignService</span>
+      </div>
+    </div>
+    <div class="who-box"><b>Who it is for:</b> Deaf, hard-of-hearing, deafblind, and non-speaking phone users, plus ASL/LSQ-first users who prefer clear plain text over dense written English.</div>
+    <p><b>What it does:</b> Places one-tap no-voice crisis routes on every screen—SMS text (Text 988, Text HOME to 741741, Text 911), web chat (988 Chat), 711 IP relay, and ASL videophone—plus a "This device has no phone line" filter for Wi-Fi-only tablets, one-tap plain-language switching, and a build-enforced guarantee that no feature in the app is sound-only.</p>
+  </div>
+
+  <!-- 3. ClearSite -->
   <div class="pillar-card">
     <div class="pillar-header">
       <span class="pillar-icon">👁️</span>
       <div>
-        <h2>1. ClearSite — Screen Vision &amp; Low-Vision Navigation</h2>
-        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Iris / ClearSite</span>
+        <h2>3. ClearSite — Blind, Low-Vision &amp; Voice-Control Access</h2>
+        <span class="meta-tag">Specialist: Iris • SDK Hook: ClearSiteOverlayWidget + ClearSiteScreenScanner</span>
       </div>
     </div>
-    <p>Provides rich semantic audio descriptions of complex screens, charts, and diagrams. Features headless DOM tree narration, high-contrast layouts, and OCR document reading.</p>
+    <div class="who-box"><b>Who it is for:</b> Blind, low-vision, and print-disabled users, or anyone who needs the screen read aloud and operated by spoken voice commands.</div>
+    <p><b>What it does:</b> Scans the live semantics tree to announce every screen on arrival (putting crisis help first), reads every heading, button, and text field aloud with on-screen captions, executes spoken voice commands ("read the screen", "tap continue", "scroll down", "go back", "type message") with yes/no confirmation before destructive actions, and provides 7 on-device camera vision channels (text/OCR, product, currency, medicine, scene, colour, person).</p>
   </div>
 
-  <div class="pillar-card" style="border: 2px solid var(--green-glow); box-shadow: 0 12px 40px rgba(0,255,136,0.2);">
-    <div class="pillar-header">
-      <span class="pillar-icon">🌈</span>
-      <div>
-        <h2>2. ClearSay — AAC &amp; Assistive Speech Synthesis</h2>
-        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Clara / ClearSay</span>
-      </div>
-    </div>
-    <p>High-efficiency symbol communication boards and phrase composition engines for non-speaking communicators. Supports personalized vocal synthesis and instant chat integration.</p>
-    <div style="margin-top:16px;">
-      <a href="clearsay.html" class="btn-cta">Try the Live ClearSay Interactive AAC Demo →</a>
-    </div>
-  </div>
-
+  <!-- 4. ClearCare -->
   <div class="pillar-card">
     <div class="pillar-header">
-      <span class="pillar-icon">🌿</span>
+      <span class="pillar-icon">🧓</span>
       <div>
-        <h2>3. ClearStep — Older Adults &amp; Step-by-Step Guidance</h2>
-        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Sage</span>
+        <h2>4. ClearCare (ClearStep Senior) — Pre-Tap Button Reassurance, Scam Shield &amp; Visual Comfort</h2>
+        <span class="meta-tag">Specialist: Sage • SDK Hook: SeniorOverlayWidget + ClearCarePanel + SeniorModeService</span>
       </div>
     </div>
-    <p>Calm, distraction-free companion that walks users through everyday tasks (banking, appointments, video calls) in plain English. Includes active scam shields and memory prompts.</p>
+    <div class="who-box"><b>Who it is for:</b> Older adults, cautious technology users, and anyone who wants reassurance about what a button does before clicking it, protection from scams, and easy controls for size, contrast, button/icon size, and spacing.</div>
+    <p><b>What it does:</b></p>
+    <ul>
+      <li><b>Pre-Tap Button Explainer ("What Things Do Before You Click Them"):</b> Scans the current screen and explains in warm, plain language what each button does <i>before</i> you tap it—reassuring you that it will not charge money, call anyone, or break your device.</li>
+      <li><b>Scam Checker &amp; Trust Guides:</b> Checks suspicious phone calls, emails, and texts against 15+ elder-fraud patterns (texted 6-digit bank codes, gift cards, AnyDesk/TeamViewer remote access, fake USPS/FedEx delivery fees, grandchild bail scams) and provides simple red-flag checklists for trusting phone calls, emails, and SMS texts.</li>
+      <li><b>Live Size, Contrast, Button/Icon Size &amp; Spacing Controls:</b> Instant adjustment for Text Size (1.0× to 1.65×), High-Contrast outlines &amp; bold ink, Button &amp; Icon Size (48dp, 56dp, 64dp), and Extra Spacing between rows and buttons.</li>
+    </ul>
   </div>
 
+  <!-- 5. ClearGaze -->
   <div class="pillar-card">
     <div class="pillar-header">
-      <span class="pillar-icon">🤟</span>
+      <span class="pillar-icon">👀</span>
       <div>
-        <h2>4. ClearSign — Deaf &amp; Hard-of-Hearing Parity</h2>
-        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Nova</span>
+        <h2>5. ClearGaze — Paralysis, Eye-Tracking Dwell-to-Click &amp; Single-Switch Access</h2>
+        <span class="meta-tag">Specialist: Dex • SDK Hook: ClearGazeOverlayWidget + ClearGazeService + UhTappable</span>
       </div>
     </div>
-    <p>Real-time visual captions for system audio, meetings, and videos. Identifies ambient environmental cues (doorbells, alarms, sirens) and ensures 100% visual notification parity.</p>
+    <div class="who-box"><b>Who it is for:</b> Paralyzed users (ALS, quadriplegia, spinal cord injury, brainstem stroke / locked-in syndrome, cerebral palsy) who operate their device using their eyes (eye-tracking gaze hardware) or a single blink, sip-and-puff, or head switch.</div>
+    <p><b>What it does:</b></p>
+    <ul>
+      <li><b>Eye-Gaze Dwell-to-Click:</b> Hold your gaze steady over any button for a chosen duration (0.8s, 1.2s, 1.8s, or 2.5s) to see a radial countdown ring and click automatically—zero finger or button press required.</li>
+      <li><b>Oversized Top Eye-Bar Dock:</b> High-margin gaze targets for <i>Scroll Up</i>, <i>Scroll Down</i>, <i>Go Back</i>, and <i>Rest Eyes</i> (pauses dwell-clicking so you can read comfortably without accidental clicks).</li>
+      <li><b>Single-Switch Auto-Scanner &amp; ClearStep 48×48dp Hit Targets:</b> Automatically steps a highlight across every interactive control on the live screen for single-switch activation, backed by <code>UhTappable</code> 48×48dp minimum hit targets.</li>
+    </ul>
   </div>
 
+  <!-- 6. ClearTouch -->
   <div class="pillar-card">
     <div class="pillar-header">
-      <span class="pillar-icon">🎯</span>
+      <span class="pillar-icon">🫧</span>
       <div>
-        <h2>5. ClearTouch — Motor &amp; Switch Access</h2>
-        <span style="color:var(--green-glow); font-size:0.85rem; font-weight:700;">Specialist: Dex</span>
+        <h2>6. ClearTouch — Sensory Overload, Autism, Migraine &amp; Motion-Reduction Access</h2>
+        <span class="meta-tag">Specialist: Calm • SDK Hook: ClearTouchOverlayWidget + ClearTouchService</span>
       </div>
     </div>
-    <p>Dwell selection, single/dual switch scanning, enlarged click targets, tremor-filtering algorithms, and full voice command navigation for physical independence.</p>
+    <div class="who-box"><b>Who it is for:</b> Anyone experiencing sensory overload, motion sensitivity, migraine, TBI, autism, or visual overwhelm who needs the app turned down immediately without hunting through Settings.</div>
+    <p><b>What it does:</b> Reduces sensory input one step at a time in a predictable order—(1) <i>Stop the movement</i> (disables all animations across the widget tree), (2) <i>Soften the colours</i> (activates sensory-safe palette), and (3) <i>Strip it back to words</i> (plain-text mode)—with one-tap undo ("Put the last one back" / "Put everything back") and zero diagnostic labels.</p>
   </div>
 
-  <div class="pillar-card" style="border-color:var(--border-purple); background:rgba(13,6,28,0.95);">
-    <h2 style="color:var(--purple-bright); margin-bottom:12px;">📦 Portable Universal Accessibility Charter</h2>
+  <!-- 7. ClearFocus -->
+  <div class="pillar-card">
+    <div class="pillar-header">
+      <span class="pillar-icon">🧠</span>
+      <div>
+        <h2>7. ClearFocus — Dyslexia, ADHD, Brain-Fog &amp; Reading-Ruler Access</h2>
+        <span class="meta-tag">Specialist: Focus • SDK Hook: ClearFocusOverlayWidget + ClearFocusService</span>
+      </div>
+    </div>
+    <div class="who-box"><b>Who it is for:</b> Users with dyslexia, ADHD, post-concussion / TBI reading fatigue, long-COVID or chemo brain fog, or executive dysfunction.</div>
+    <p><b>What it does:</b> Provides a movable horizontal <b>Reading Ruler</b> (line-focus bar) that highlights 2–3 lines of text while shading distracting clutter above and below, widens letter spacing (+0.6px), word spacing (+2.0px), and line height (1.6×) across the entire app to prevent letter crowding, and shows a "Where Am I &amp; What Is Next?" screen anchor.</p>
+  </div>
+
+  <!-- B2B SDK Section for Other App Companies -->
+  <div class="pillar-card" style="border-color:var(--green-glow);">
+    <h2>🔌 For Other App Creators &amp; Studios — Include ClearPlus in Already-Made Apps</h2>
     <p>
-      ClearPlus is not locked to one platform. It is a language-neutral specification designed to drop into any app — including Flutter (Understanding Humans), React/TypeScript (Kindred Connect), and Python applications.
+      Every ClearPlus agent is engineered to sit <b>above</b> the host app's router/navigator (such as Flutter's <code>MaterialApp.builder</code> or web DOM overlays) and read the live accessibility semantics tree automatically.
     </p>
-    <ul style="margin-top:10px;">
-      <li><b>Content-Blind Equality</b>: Accessibility tools enhance representation and timing, never gating or restricting topics.</li>
-      <li><b>Zero Condescension Standard</b>: Conversational AI assistants always communicate with dignity, high intelligence, and respect.</li>
+    <ul>
+      <li><b>Zero Screen Rewrites:</b> Drop all 7 ClearPlus agents—or choose individual agents like <code>ClearCare</code>, <code>ClearGaze</code>, or <code>ClearSay</code>—into an existing mobile or web app in minutes.</li>
+      <li><b>Self-Describing UI:</b> Every ClearPlus panel includes a built-in banner telling end users <b>Who it is for</b> and <b>What it does</b> in plain, respectful language.</li>
+      <li><b>Partner Inquiries:</b> Join the early-access list on <a href="index.html#signup" style="color:var(--green-glow);">www.aurora-system.ca</a> or <a href="https://www.understandinghumans.app" style="color:var(--green-glow);">www.understandinghumans.app</a> to license ClearPlus for your app.</li>
     </ul>
   </div>
 </main>
@@ -175,7 +228,6 @@
     <a href="index.html">Home</a>
     <a href="about.html">About Aurora</a>
     <a href="clearplus.html">ClearPlus Accessibility</a>
-    <a href="clearsay.html">ClearSay AAC</a>
     <a href="understanding-humans.html">Understanding Humans</a>
     <a href="https://www.understandinghumans.app" target="_blank">understandinghumans.app ↗</a>
   </div>
