@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aurora OS — Intelligent Autonomous Operating System for Everyone</title>
-<meta name="description" content="Aurora OS is an intelligent, autonomous operating system built for everyone without labels. Featuring 16 specialist AI agents, the 7-agent ClearPlus accessibility &amp; B2B SDK suite, and 100% local privacy.">
+<meta name="description" content="Aurora OS is an intelligent, autonomous operating system built for everyone without labels. Featuring 32 specialist AI agents, ThinkTank Mode, Clara's 7-mode ClearPlus accessibility &amp; B2B SDK suite, and 100% local privacy.">
 <meta property="og:title" content="Aurora OS — The Operating System That Builds and Cares for You">
-<meta property="og:description" content="16 Autonomous Agents. 7-Agent ClearPlus Accessibility Suite &amp; B2B SDK. Privacy-first, local intelligence made for everyone without labels.">
+<meta property="og:description" content="32 Autonomous Specialist Agents &amp; ThinkTank Mode. Clara (🌈) ClearPlus 7-Mode Accessibility Suite &amp; B2B SDK. Privacy-first, local intelligence made for everyone without labels.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.aurora-system.ca">
 <link rel="canonical" href="https://www.aurora-system.ca">
@@ -50,7 +50,7 @@
       Not the <span class="glow-purple">Other Way Around</span>.
     </h1>
     <p class="lead">
-      Aurora OS is a companion operating system running 16 autonomous specialist agents and the <b>7-agent ClearPlus Accessibility Suite</b> on your device. Zero cloud surveillance, zero patronizing interfaces, and zero code required. Made with dignity for non-speaking communicators, Deaf &amp; blind users, older adults, paralyzed eye-gaze users, neurodivergent minds, and creators alike.
+      Aurora OS is a companion operating system where you chat directly with Aurora in one unified chatbox while she delegates to 32 autonomous specialist agents, ThinkTank Mode, and <b>Clara (🌈) with her 7 Stackable ClearPlus Accessibility Modes</b> on your device. Zero cloud surveillance, zero patronizing interfaces, and zero code required. Made with dignity for non-speaking communicators, Deaf &amp; blind users, older adults, paralyzed eye-gaze users, neurodivergent minds, and creators alike.
     </p>
     <div class="hero-buttons">
       <a href="#signup" class="btn-cta">Join Early Access Waitlist</a>
@@ -77,7 +77,7 @@
         </ul>
         <div style="display:flex; gap:14px; flex-wrap:wrap;">
           <a href="understanding-humans.html" class="btn-cta">Learn More About the App</a>
-          <a href="https://www.understandinghumans.app" target="_blank" class="btn-outline">Visit understandinghumans.app ↗</a>
+          <a href="https://www.understandinghumans.app" target="_blank" rel="noopener noreferrer" class="btn-outline">Visit understandinghumans.app ↗</a>
         </div>
       </div>
       <div style="background:rgba(5,2,12,0.7); border:1.5px solid var(--border-purple); border-radius:var(--radius-md); padding:28px; text-align:center;">
@@ -89,7 +89,6 @@
       </div>
     </div>
   </section>
-
   <!-- Section: Made for Everyone Without Labels -->
   <section class="section-card">
     <h2 class="section-title">🌟 Made for Everyone Without Labels</h2>
@@ -130,17 +129,16 @@
       </div>
     </div>
   </section>
-
-  <!-- Section: ClearPlus 7-Agent Accessibility Suite & B2B SDK -->
+  <!-- Section: ClearPlus Accessibility Suite & B2B SDK -->
   <section class="section-card purple-theme">
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:20px;">
       <div>
-        <h2 class="section-title">♿ The 7 ClearPlus Agents + <code>ClearStep</code> (B2B Embeddable SDK)</h2>
+        <h2 class="section-title">♿ Clara (🌈) &amp; Her 7 Stackable ClearPlus Modes (B2B Embeddable SDK)</h2>
         <p class="section-subtitle">
-          Every <code>Clear*</code> agent tells users inside the app <b>Who It Is For</b> and <b>What It Does</b> — and can be dropped into any existing Flutter, Web, iOS, or Android app by other app companies in minutes.
+          Clara (🌈) is the single ClearPlus Accessibility Specialist AA, operating 7 stackable <code>Clear*</code> modes that tell users inside the app <b>Who It Is For</b> and <b>What It Does</b> — and can be dropped into any existing Flutter, Web, iOS, or Android app in minutes.
         </p>
       </div>
-      <a href="clearplus.html" class="btn-outline">View All 7 Agents &amp; B2B SDK →</a>
+      <a href="clearplus.html" class="btn-outline">View Clara &amp; All 7 Modes + B2B SDK →</a>
     </div>
 
     <div class="grid-3">
@@ -181,12 +179,11 @@
       </div>
     </div>
   </section>
-
-  <!-- Section: The 16 Autonomous Specialist Agents (AAs) -->
+  <!-- Section: The 32 Autonomous Specialist Agents (AAs) -->
   <section class="section-card">
-    <h2 class="section-title">🤖 16 Autonomous Specialists Working for You</h2>
+    <h2 class="section-title">🤖 32 Autonomous Specialists &amp; ThinkTank Mode Working for You</h2>
     <p class="section-subtitle">
-      Aurora leads a full team of autonomous specialists that execute real work directly on your machine.
+      You talk to Aurora in one unified chatbox — she delegates and pulls in her 32 autonomous specialists and 3-Wave ThinkTank Relay Mode directly on your machine.
     </p>
 
     <div class="grid-4">
@@ -375,10 +372,11 @@
     <p style="color:var(--text-muted); font-size:1rem; line-height:1.6;">
       Aurora OS, Understanding Humans, and the 7-Agent ClearPlus SDK are in active development. Sign up with your email to receive developmental updates, early access invites, or B2B SDK licensing details.
     </p>
-    <form class="form-group" onsubmit="event.preventDefault(); alert('Thank you for signing up! We will reach out with early access updates.');">
-      <input type="email" class="form-input" placeholder="Enter your email address..." required>
+    <form id="signup-form" class="form-group" name="early-access" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="early-access">
+      <input type="email" name="email" class="form-input" aria-label="Email address" placeholder="Enter your email address..." required>
       <button type="submit" class="btn-cta">Sign Up</button>
     </form>
+    <div id="success-msg" role="status" aria-live="polite" style="display:none; color:var(--green-glow); font-weight:700; margin-bottom:14px;">✓ Thank you for signing up! We will reach out with early access updates.</div>
     <div style="font-size:0.82rem; color:#64748b;">Zero spam. 100% privacy. Unsubscribe at any time.</div>
   </section>
 </main>
@@ -387,12 +385,13 @@
   <div class="footer-links">
     <a href="index.html">Home</a>
     <a href="about.html">About Aurora</a>
-    <a href="clearplus.html">ClearPlus (7 Agents &amp; SDK)</a>
+    <a href="clearplus.html">ClearPlus (7 Modes &amp; SDK)</a>
+    <a href="clearsay.html">ClearSay AAC</a>
     <a href="understanding-humans.html">Understanding Humans</a>
-    <a href="https://www.understandinghumans.app" target="_blank">understandinghumans.app ↗</a>
+    <a href="https://www.understandinghumans.app" target="_blank" rel="noopener noreferrer">understandinghumans.app ↗</a>
   </div>
   <p>© 2026 Aurora OS (<code>www.aurora-system.ca</code>) &amp; Understanding Humans (<code>www.understandinghumans.app</code>). Built for everyone without labels.</p>
 </footer>
-
+<script src="script.js"></script>
 </body>
 </html>

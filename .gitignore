@@ -1,0 +1,19 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# OS & Editor artifacts
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Dependencies & logs
+node_modules/
+*.log
+*.bak

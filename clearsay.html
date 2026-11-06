@@ -10,396 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aurora-system.ca/clearsay">
 <link rel="canonical" href="https://aurora-system.ca/clearsay">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg:        #03030a;
-    --bg2:       #060614;
-    --bg3:       #0a0a1a;
-    --green:     #00ff88;
-    --green2:    #00e676;
-    --cyan:      #00e5ff;
-    --cyan2:     #18ffff;
-    --purple:    #aa00ff;
-    --purple2:   #7c4dff;
-    --magenta:   #ff00e5;
-    --blue:      #2979ff;
-    --teal:      #22d3ee;
-    --text:      #f0f0ff;
-    --dim:       #6070a0;
-    --radius:    16px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
-  }
-
-  /* === AURORA BOREALIS BACKGROUND === */
-  .aurora-canvas {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
-
-  .aurora-band {
-    position: absolute;
-    width: 160%;
-    height: 55%;
-    left: -30%;
-    top: -10%;
-    border-radius: 50%;
-    filter: blur(60px);
-    mix-blend-mode: screen;
-    opacity: 0.45;
-  }
-
-  .aurora-band:nth-child(2) {
-    background: linear-gradient(105deg,
-      transparent 0%,
-      rgba(34,211,238,0.5) 25%,
-      rgba(124,77,255,0.5) 55%,
-      rgba(0,229,255,0.4) 80%,
-      transparent 100%);
-    animation: aurora1 12s ease-in-out infinite alternate;
-  }
-  .aurora-band:nth-child(3) {
-    background: linear-gradient(95deg,
-      transparent 0%,
-      rgba(170,0,255,0.4) 15%,
-      rgba(34,211,238,0.45) 45%,
-      rgba(0,255,136,0.3) 70%,
-      transparent 100%);
-    top: 5%;
-    animation: aurora2 16s ease-in-out infinite alternate;
-    opacity: 0.35;
-  }
-  .aurora-band:nth-child(4) {
-    background: linear-gradient(115deg,
-      transparent 0%,
-      rgba(34,211,238,0.35) 30%,
-      rgba(167,139,250,0.4) 60%,
-      transparent 100%);
-    top: -5%;
-    animation: aurora3 20s ease-in-out infinite alternate;
-    opacity: 0.3;
-  }
-
-  .aurora-streaks {
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      90deg,
-      transparent 0px, transparent 80px,
-      rgba(34,211,238,0.015) 81px, transparent 82px,
-      transparent 160px, rgba(124,77,255,0.012) 161px, transparent 162px
-    );
-    animation: streakShift 8s linear infinite;
-  }
-
-  .aurora-horizon {
-    position: absolute;
-    bottom: 0; left: 0; right: 0; height: 35%;
-    background: linear-gradient(to top,
-      rgba(34,211,238,0.05) 0%, rgba(124,77,255,0.03) 40%, transparent 100%);
-  }
-
-  .stars {
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 35% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 55% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
-      radial-gradient(1px 1px at 72% 5%, rgba(255,255,255,0.4) 0%, transparent 100%),
-      radial-gradient(1px 1px at 88% 22%, rgba(255,255,255,0.5) 0%, transparent 100%),
-      radial-gradient(1px 1px at 8% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1.5px 1.5px at 92% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
-      radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 65% 55%, rgba(255,255,255,0.4) 0%, transparent 100%);
-    opacity: 0.8;
-  }
-
-  @keyframes aurora1 {
-    0%   { transform: translateX(-5%) scaleY(0.9) rotate(-1deg); }
-    50%  { transform: translateX(3%) scaleY(1.1) rotate(0.5deg); }
-    100% { transform: translateX(6%) scaleY(1.05) rotate(1deg); }
-  }
-  @keyframes aurora2 {
-    0%   { transform: translateX(4%) scaleY(1.05); }
-    50%  { transform: translateX(-6%) scaleY(0.9); }
-    100% { transform: translateX(2%) scaleY(1.1); }
-  }
-  @keyframes aurora3 {
-    0%   { transform: translateX(-8%) scaleY(0.85); }
-    50%  { transform: translateX(5%) scaleY(1.2); }
-    100% { transform: translateX(-3%) scaleY(1.0); }
-  }
-  @keyframes streakShift {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(162px); }
-  }
-
-  /* === NAV === */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    width: 100%;
-    background: rgba(3,3,10,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(34,211,238,0.12);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 40px; height: 60px;
-  }
-  .nav-logo {
-    font-family: 'Courier New', monospace;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 5px;
-    color: var(--teal); text-shadow: 0 0 16px rgba(34,211,238,0.5);
-    text-transform: uppercase; text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a { color: rgba(180,200,240,0.6); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--teal); }
-  .nav-home {
-    background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.25);
-    border-radius: 8px; padding: 7px 16px; color: var(--teal) !important;
-    font-weight: 600; font-size: 0.78rem !important; letter-spacing: 1px;
-  }
-  @media (max-width: 700px) { nav { padding: 0 20px; } .nav-links { gap: 14px; } }
-
-  /* === PAGE CONTENT === */
-  .page { position: relative; z-index: 1; width: 100%; max-width: 1000px; padding: 0 40px; }
-
-  /* === HERO === */
-  .hero {
-    padding: 80px 0 60px;
-    text-align: center;
-    display: flex; flex-direction: column; align-items: center;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.3);
-    border-radius: 999px; padding: 6px 20px; font-size: 0.72rem;
-    color: var(--teal); letter-spacing: 2px; text-transform: uppercase;
-    margin-bottom: 36px;
-  }
-  .hero-badge-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--teal); box-shadow: 0 0 10px var(--teal), 0 0 20px rgba(34,211,238,0.4);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .hero h1 {
-    font-size: clamp(2.5rem, 7vw, 4.5rem);
-    font-weight: 900; letter-spacing: -2px; line-height: 1.05; margin-bottom: 24px;
-    background: linear-gradient(120deg, var(--teal) 0%, #a78bfa 60%, var(--teal) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(34,211,238,0.3));
-  }
-  .hero-sub {
-    font-size: clamp(1rem, 2.5vw, 1.15rem);
-    color: rgba(180,200,240,0.7); max-width: 580px; line-height: 1.8; margin-bottom: 40px;
-  }
-  .hero-quote {
-    background: rgba(34,211,238,0.06); border: 1px solid rgba(34,211,238,0.18);
-    border-left: 4px solid var(--teal); border-radius: 12px;
-    padding: 18px 24px; font-size: 1.05rem; font-style: italic;
-    color: rgba(200,220,255,0.8); max-width: 560px; line-height: 1.7;
-  }
-
-  /* === SECTION === */
-  .section { padding: 60px 0; }
-  .section-label {
-    font-size: 0.68rem; letter-spacing: 4px; text-transform: uppercase;
-    color: var(--teal); font-family: 'Courier New', monospace; margin-bottom: 10px; opacity: 0.8;
-  }
-  .section h2 {
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    font-weight: 900; letter-spacing: -1px; margin-bottom: 14px;
-  }
-  .section-sub {
-    color: rgba(160,180,230,0.65); font-size: 0.95rem; max-width: 620px; line-height: 1.8;
-    margin-bottom: 36px;
-  }
-  .divider {
-    width: 100%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(34,211,238,0.12), transparent);
-    margin: 0;
-  }
-
-  /* === HOW IT WORKS === */
-  .steps { display: flex; flex-direction: column; gap: 20px; }
-  .step {
-    display: flex; gap: 20px; align-items: flex-start;
-    background: rgba(6,6,20,0.7); border: 1px solid rgba(34,211,238,0.1);
-    border-radius: 14px; padding: 20px 22px;
-  }
-  .step-num {
-    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 0.9rem; color: var(--teal);
-  }
-  .step-title { font-weight: 700; color: var(--teal); margin-bottom: 4px; font-size: 0.95rem; }
-  .step-desc { color: rgba(170,185,225,0.7); font-size: 0.85rem; line-height: 1.6; }
-
-  /* === CONDITIONS === */
-  .conditions-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px;
-  }
-  .cond-card {
-    background: rgba(6,6,20,0.75); border: 1px solid rgba(34,211,238,0.1);
-    border-left: 3px solid var(--teal); border-radius: 12px; padding: 18px 18px;
-  }
-  .cond-title { font-weight: 800; color: var(--teal); margin-bottom: 6px; font-size: 0.92rem; }
-  .cond-desc { font-size: 0.82rem; color: rgba(165,185,225,0.7); line-height: 1.6; }
-  .cond-source { font-size: 0.72rem; color: rgba(100,130,170,0.5); margin-top: 6px; font-style: italic; }
-
-  /* === SOURCES === */
-  .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
-  .source-card {
-    background: rgba(6,6,20,0.7); border: 1px solid rgba(124,77,255,0.15);
-    border-radius: 12px; padding: 18px;
-  }
-  .source-name { font-weight: 700; color: #a78bfa; margin-bottom: 4px; font-size: 0.9rem; }
-  .source-url { font-size: 0.72rem; color: var(--teal); margin-bottom: 6px; font-family: monospace; }
-  .source-desc { font-size: 0.8rem; color: rgba(160,175,215,0.65); line-height: 1.5; }
-
-  /* === PROFILE === */
-  .profile-block {
-    background: rgba(6,6,20,0.8);
-    border: 1px solid rgba(34,211,238,0.15);
-    border-radius: 18px; padding: 32px 36px;
-  }
-  .profile-title { font-size: 1.1rem; font-weight: 800; color: var(--teal); margin-bottom: 12px; }
-  .profile-desc { color: rgba(160,180,225,0.7); font-size: 0.88rem; line-height: 1.7; margin-bottom: 20px; }
-  .profile-fields {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;
-  }
-  .profile-field {
-    background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.12);
-    border-radius: 8px; padding: 10px 14px; font-size: 0.8rem;
-    color: rgba(170,190,230,0.75);
-  }
-  .profile-field strong { color: var(--teal); display: block; font-size: 0.7rem;
-    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
-
-  /* === UH COMMITMENT === */
-  .uh-commitment {
-    background: rgba(6,6,20,0.85);
-    border: 1px solid rgba(34,211,238,0.18);
-    border-radius: 22px; padding: 48px 44px;
-    position: relative; overflow: hidden;
-  }
-  .uh-commitment::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--teal), #a78bfa, var(--teal));
-  }
-  .uh-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(34,211,238,0.07); border: 1px solid rgba(34,211,238,0.25);
-    border-radius: 100px; padding: 8px 20px; margin-bottom: 24px;
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--teal);
-  }
-  .uh-badge-dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--teal);
-    animation: pulse 2s infinite;
-  }
-  .uh-commitment h3 {
-    font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; letter-spacing: -0.5px;
-    margin-bottom: 16px; line-height: 1.2;
-  }
-  .uh-commitment h3 span { color: var(--teal); }
-  .uh-commitment .lead {
-    font-size: 1rem; color: rgba(175,195,235,0.8); line-height: 1.8; max-width: 660px;
-    margin-bottom: 36px;
-  }
-  .uh-apps-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;
-    margin-bottom: 36px;
-  }
-  .uh-app-card {
-    background: rgba(34,211,238,0.04); border: 1px solid rgba(34,211,238,0.1);
-    border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .uh-app-card:hover { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.07); }
-  .uh-app-icon { font-size: 1.4rem; }
-  .uh-app-name { font-weight: 700; color: var(--teal); font-size: 0.88rem; }
-  .uh-app-desc { font-size: 0.77rem; color: rgba(150,170,215,0.65); line-height: 1.5; }
-  .uh-promise {
-    background: rgba(34,211,238,0.06); border: 1px solid rgba(34,211,238,0.2);
-    border-left: 4px solid var(--teal); border-radius: 12px;
-    padding: 20px 24px; font-size: 0.9rem; line-height: 1.7;
-    color: rgba(190,210,245,0.85);
-  }
-  .uh-promise strong { color: var(--teal); }
-
-  /* === SIGNUP === */
-  .signup-card {
-    background: rgba(6,6,20,0.85); border: 1px solid rgba(34,211,238,0.2);
-    border-top: 1px solid rgba(34,211,238,0.4); border-radius: 22px;
-    padding: 48px 44px; width: 100%; max-width: 580px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 60px rgba(34,211,238,0.05), inset 0 1px 0 rgba(34,211,238,0.1);
-    position: relative; overflow: hidden;
-  }
-  .signup-card::before {
-    content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--teal), transparent); opacity: 0.5;
-  }
-  .signup-card h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
-  .signup-card p { color: rgba(160,180,220,0.65); font-size: 0.88rem; line-height: 1.75; margin-bottom: 28px; }
-  .signup-form { display: flex; flex-direction: column; gap: 12px; }
-  .signup-form input { background: rgba(34,211,238,0.04); border: 1px solid rgba(34,211,238,0.15);
-    border-radius: 10px; padding: 14px 18px; font-size: 0.92rem; color: var(--text);
-    outline: none; transition: border-color 0.2s; width: 100%; }
-  .signup-form input:focus { border-color: rgba(34,211,238,0.5); }
-  .signup-form input::placeholder { color: rgba(100,130,180,0.45); }
-  .signup-form button {
-    background: linear-gradient(135deg, rgba(34,211,238,0.15), rgba(124,77,255,0.15));
-    border: 1px solid rgba(34,211,238,0.45); border-radius: 10px; padding: 15px;
-    font-size: 0.95rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
-    cursor: pointer; color: var(--teal); transition: all 0.25s; margin-top: 4px;
-  }
-  .signup-form button:hover { box-shadow: 0 0 40px rgba(34,211,238,0.25); color: #fff; transform: translateY(-1px); }
-  .signup-note { margin-top: 14px; color: rgba(100,120,160,0.45); font-size: 0.74rem; }
-  .success-msg {
-    display: none; color: var(--teal); font-size: 0.95rem; font-weight: 600;
-    padding: 18px; background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.2);
-    border-radius: 10px; margin-top: 8px;
-  }
-
-  footer {
-    position: relative; z-index: 1; width: 100%; padding: 36px 40px;
-    color: rgba(100,120,160,0.35); font-size: 0.75rem; text-align: center;
-    letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.04);
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-  }
-  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-  .footer-links a { color: rgba(100,130,180,0.5); text-decoration: none; font-size: 0.72rem; }
-  .footer-links a:hover { color: var(--teal); }
-
-  @media (max-width: 600px) {
-    .page { padding: 0 20px; }
-    .hero { padding: 60px 0 40px; }
-    .signup-card { padding: 32px 22px; }
-    .section { padding: 44px 0; }
-    .profile-block { padding: 24px 20px; }
-  }
-</style>
+<link rel="stylesheet" href="clearsay.css">
 </head>
 <body>
 
@@ -416,11 +27,10 @@
 <nav>
   <a href="index.html" class="nav-logo">◈ Aurora OS</a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="clearplus.html">ClearPlus 5 Pillars</a></li>
-    <li><a href="#what">Capabilities</a></li>
+    <li><a href="clearplus.html">ClearPlus (7 Modes &amp; SDK)</a></li>
     <li><a href="#who">Who She Helps</a></li>
-    <li><a href="understanding-humans.html">Understanding Humans</a></li>
+    <li><a href="#sources">Sources</a></li>
+    <li><a href="#uh">UH Commitment</a></li>
     <li><a href="#access" class="nav-home">Get Access</a></li>
   </ul>
 </nav>
@@ -689,7 +299,7 @@
         <div class="uh-app-card">
           <div class="uh-app-icon">🧠</div>
           <div class="uh-app-name">Aurora OS</div>
-          <div class="uh-app-desc">The flagship platform. ClearSay is active whenever AAC mode is on — coordinating every one of Aurora's 9 specialist agents on behalf of non-verbal users.</div>
+          <div class="uh-app-desc">The flagship platform. ClearSay is active whenever AAC mode is on — coordinating every one of Aurora's 32 specialist agents on behalf of non-verbal users.</div>
         </div>
         <div class="uh-app-card">
           <div class="uh-app-icon">📱</div>
@@ -744,12 +354,12 @@
     <div class="signup-card">
       <h2>Request ClearSay Access</h2>
       <p>ClearSay is available to all Aurora testers, caregivers, AAC professionals, and accessibility advocates. Drop your email to be first in line.</p>
-      <form class="signup-form" id="cs-form">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="your@email.com" required>
+      <form class="signup-form" id="cs-form" name="clearsay-access" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="clearsay-access">
+        <input type="text" name="name" aria-label="Your name" placeholder="Your name" required>
+        <input type="email" name="email" aria-label="Email address" placeholder="your@email.com" required>
         <button type="submit">Get ClearSay Access</button>
       </form>
-      <div class="success-msg" id="cs-success">
+      <div class="success-msg" id="cs-success" role="status" aria-live="polite">
         You are on the list. We will reach out personally.
       </div>
       <p class="signup-note">No spam. We will only contact you when ClearSay is ready for your use case.</p>
@@ -761,34 +371,16 @@
 <footer>
   <div class="footer-links">
     <a href="index.html">Aurora OS Home</a>
-    <a href="about.html">About Aurora</a>
-    <a href="clearplus.html">ClearPlus Accessibility</a>
-    <a href="clearsay.html">ClearSay AAC</a>
-    <a href="understanding-humans.html">Understanding Humans</a>
-    <a href="https://www.understandinghumans.app" target="_blank">understandinghumans.app ↗</a>
+    <a href="clearplus.html">ClearPlus (7 Modes &amp; SDK)</a>
+    <a href="#what">What ClearSay Does</a>
+    <a href="#who">Who She Helps</a>
+    <a href="#sources">Sources</a>
+    <a href="#uh">UH Commitment</a>
+    <a href="#access">Get Access</a>
   </div>
   <div>© 2026 Aurora OS · ClearSay · Built by Kristina Green · aurora-system.ca</div>
 </footer>
 
-<script>
-document.getElementById('cs-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name  = this.querySelector('input[name="name"]').value.trim();
-  const email = this.querySelector('input[name="email"]').value.trim();
-
-  const mailto = 'mailto:understandinghumansapp@gmail.com'
-    + '?subject=' + encodeURIComponent('ClearSay Access Request — ' + name)
-    + '&body='    + encodeURIComponent(
-        'Name: ' + name + '\nEmail: ' + email +
-        '\n\nI would like access to ClearSay / Aurora OS.\n' +
-        'My use case: [please describe your situation or how you plan to use ClearSay]'
-      );
-
-  window.location.href = mailto;
-  this.style.display = 'none';
-  document.getElementById('cs-success').style.display = 'block';
-});
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
